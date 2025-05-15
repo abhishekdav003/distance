@@ -1,8 +1,8 @@
 import React from 'react'
 import './App.css'
-import Header from './components/global/header'
+import Header from './components/global/Header.jsx'
 import { Outlet } from 'react-router-dom'
-import Footer from './components/global/Footer'
+import Footer from './components/global/Footer.jsx'
 
 const App = () => {
   return (
