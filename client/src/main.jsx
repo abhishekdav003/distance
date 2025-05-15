@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom'
 
 
-import routes from './routes/routes.jsx'
+import routes from './routes/Routes.jsx'
 import './index.css'
 import App from './App.jsx'
 
