@@ -7,21 +7,119 @@ import 'slick-carousel/slick/slick-theme.css';
 
 const courses = [
   {
-    title: 'MBA - Finance Management',
+    title: 'MBA - Master of Business Administration',
     duration: '2 years',
     eligibility: 'Bachelor’s Degree with minimum 50%',
     mode: 'Online (Live/Recorded Lectures)',
     payment: 'EMI options available',
   },
   {
-    title: 'MCA - Computer Applications',
+    title: 'MCA - Master of Computer Applications',
     duration: '2 years',
-    eligibility: 'Bachelor’s Degree in relevant field',
+    eligibility: 'BCA or equivalent with minimum 50%',
     mode: 'Online (Live/Recorded Lectures)',
     payment: 'EMI options available',
   },
-  // Add more courses as needed
+  {
+    title: 'MCOM - Master of Commerce',
+    duration: '2 years',
+    eligibility: 'B.Com or equivalent',
+    mode: 'Online (Live/Recorded Lectures)',
+    payment: 'EMI options available',
+  },
+  {
+    title: 'MA - Master of Arts',
+    duration: '2 years',
+    eligibility: 'Graduation in any stream',
+    mode: 'Online (Live/Recorded Lectures)',
+    payment: 'EMI options available',
+  },
+  {
+    title: 'MSC - Master of Science',
+    duration: '2 years',
+    eligibility: 'B.Sc or equivalent',
+    mode: 'Online (Live/Recorded Lectures)',
+    payment: 'EMI options available',
+  },
+  {
+    title: 'MJMC - Master of Journalism & Mass Communication',
+    duration: '2 years',
+    eligibility: 'Graduation in any stream',
+    mode: 'Online (Live/Recorded Lectures)',
+    payment: 'EMI options available',
+  },
+  {
+    title: 'BBA - Bachelor of Business Administration',
+    duration: '3 years',
+    eligibility: '10+2 or equivalent',
+    mode: 'Online (Live/Recorded Lectures)',
+    payment: 'EMI options available',
+  },
+  {
+    title: 'BCA - Bachelor of Computer Applications',
+    duration: '3 years',
+    eligibility: '10+2 or equivalent',
+    mode: 'Online (Live/Recorded Lectures)',
+    payment: 'EMI options available',
+  },
+  {
+    title: 'BCOM - Bachelor of Commerce',
+    duration: '3 years',
+    eligibility: '10+2 or equivalent',
+    mode: 'Online (Live/Recorded Lectures)',
+    payment: 'EMI options available',
+  },
+  {
+    title: 'BA - Bachelor of Arts',
+    duration: '3 years',
+    eligibility: '10+2 or equivalent',
+    mode: 'Online (Live/Recorded Lectures)',
+    payment: 'EMI options available',
+  },
+  {
+    title: 'BSC - Bachelor of Science',
+    duration: '3 years',
+    eligibility: '10+2 with Science',
+    mode: 'Online (Live/Recorded Lectures)',
+    payment: 'EMI options available',
+  },
+  {
+    title: 'BJMC - Bachelor of Journalism & Mass Communication',
+    duration: '3 years',
+    eligibility: '10+2 or equivalent',
+    mode: 'Online (Live/Recorded Lectures)',
+    payment: 'EMI options available',
+  },
+  {
+    title: 'PGP - Post Graduate Program',
+    duration: '1 year',
+    eligibility: 'Graduation in any stream',
+    mode: 'Online (Live/Recorded Lectures)',
+    payment: 'EMI options available',
+  },
+  {
+    title: 'DIPLOMA - Diploma Program',
+    duration: '1 year',
+    eligibility: '10+2 or Graduation (varies by course)',
+    mode: 'Online (Live/Recorded Lectures)',
+    payment: 'EMI options available',
+  },
+  {
+    title: 'CERTIFICATE - Short Term Certification',
+    duration: '3–6 months',
+    eligibility: '10+2 or equivalent',
+    mode: 'Online (Live/Recorded Lectures)',
+    payment: 'EMI options available',
+  },
+  {
+    title: 'LLM - Master of Law',
+    duration: '1 year',
+    eligibility: 'LLB or equivalent law degree',
+    mode: 'Online (Live/Recorded Lectures)',
+    payment: 'EMI options available',
+  },
 ];
+
 
 const CoursesCarousel = () => {
   const settings = {

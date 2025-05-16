@@ -37,7 +37,6 @@ export default function Header() {
           <Link to="/" className="hover:text-blue-600">Home</Link>
           <Link to="/about-us" className="hover:text-blue-600">About Us</Link>
           <Link to="/compare-colleges" className="hover:text-blue-600">Compare Colleges</Link>
-          <Link to="/blogs" className="hover:text-blue-600">Blogs</Link>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -71,7 +70,6 @@ export default function Header() {
           <Link to="/" className="block hover:text-blue-600">Home</Link>
           <Link to="/about-us" className="block hover:text-blue-600">About Us</Link>
           <Link to="/compare-colleges" className="block hover:text-blue-600">Compare Colleges</Link>
-          <Link to="/blogs" className="block hover:text-blue-600">Blogs</Link>
         </div>
       )}
     </header>

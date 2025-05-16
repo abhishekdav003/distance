@@ -1,6 +1,8 @@
 const universities = [
   {
     universityName: "DY Patil University",
+    logo: "/logos/dpu-logo.webp",
+    About:"DY Patil University Online (DPUO) operates under Dr. D. Y. Patil Vidyapeeth – Centre for Online Learning (DPU-COL), a top private university in India. Launched in 2010, DPUO offers a wide range of UGC- and DEB-approved undergraduate and postgraduate online programs designed for modern learners seeking flexibility and career relevance.Accredited by NAAC with an A++ grade and ranked among the top 50 universities in NIRF 2025, DPU emphasizes academic excellence and industry-aligned education. Its programs span Business Management, Healthcare, IT, and more, combining practical skills with a flexible, student-friendly learning environment.",
     location: "Navi Mumbai, Maharashtra, India",
     established: 2002,
     accreditation: "NAAC A++",
@@ -56,6 +58,8 @@ const universities = [
   },
   {
     universityName: "Uttaranchal University",
+     About:"",
+     logo: "/logos/uu.webp",
     location: "Dehradun, Uttarakhand, India",
     established: 2013,
     accreditation: "NAAC A+",
@@ -153,6 +157,8 @@ const universities = [
   },
   {
     universityName: "UPES University",
+     About:"",
+     logo: "/logos/upes.webp",
     location: "Dehradun, Uttarakhand, India",
     established: 2003,
     accreditation: "NAAC A",
@@ -209,6 +215,8 @@ const universities = [
   },
   {
     universityName: "Vivekananda Global University",
+     About:"",
+     logo: "/logos/vgu.webp",
     location: "Jaipur, Rajasthan, India",
     established: 2012,
     accreditation: "NAAC A",
@@ -263,6 +271,8 @@ const universities = [
   },
   {
     universityName: "Shoolini University",
+     About:"",
+     logo: "/logos/su-logo.webp",
     location: "Solan, Himachal Pradesh, India",
     established: 2009,
     accreditation: "NAAC B++",
@@ -315,6 +325,8 @@ const universities = [
   },
   {
     universityName: "Chandigarh University",
+     About:"",
+     logo: "/logos/cu.webp",
     location: "Mohali, Punjab, India",
     established: 2012,
     accreditation: "NAAC A+",
@@ -369,6 +381,8 @@ const universities = [
   },
   {
     universityName: "Amity University",
+     About:"",
+     logo: "/logos/amity.webp",
     location: "Noida, Uttar Pradesh, India",
     established: 2005,
     accreditation: "NAAC A+",
@@ -422,7 +436,10 @@ const universities = [
     },
   },
   {
-    universityName: "Online Manipal University",
+    universityName: "Manipal University",
+     About:"",
+     logo: "/logos/manipal.webp",
+     logo: "/logos/manipal.webp",
     location: "Manipal, Karnataka, India",
     established: 1993,
     accreditation: "NAAC A+",
@@ -471,6 +488,8 @@ const universities = [
   },
   {
     universityName: "Sikkim Manipal University",
+     About:"",
+    logo: "/logos/smu.webp",
     location: "Gangtok, Sikkim, India",
     established: 1995,
     accreditation: "NAAC A+",
@@ -525,6 +544,7 @@ const universities = [
   },
   {
     universityName: "Lovely Professional University",
+     About:"",
     logo: "/logos/lpu.webp",
     location: "Phagwara, Punjab, India",
     established: 2005,

@@ -9,7 +9,7 @@ import {
 
 const universities = [
   {
-    name: "Manipal University Jaipur",
+    name: "Manipal University",
     since: 2011,
     courses: "Online Masters/ Bachelors",
     accreditation: "UGC-entitled degree programme",
@@ -63,7 +63,7 @@ const universities = [
     image: "/images/shoolini.webp",
   },
   {
-    name: "DY Patil Vidyapeeth, Pune",
+    name: "DY Patil University",
     since: 2003,
     courses: "Online Masters/ Bachelors",
     accreditation: "UGC-entitled degree programme",
@@ -89,15 +89,6 @@ const universities = [
     fee: "₹4,000 / Month (Approx)",
     image: "/images/nmims.webp",
   },
-  {
-    name: "Institute of Management Technology, Ghaziabad (IMT)",
-    since: 1980,
-    courses: "Online PGDM (MBA equivalent)",
-    accreditation: "AICTE approved, UGC entitled",
-    ranking: "NIRF Top 50 (Management), AACSB accredited",
-    fee: "₹6,000 / Month (Approx)",
-    image: "/images/imt.webp",
-  }
 ];
 
 const settings = {
