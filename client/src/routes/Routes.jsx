@@ -4,6 +4,7 @@ import Home from '../pages/Home';
 import AboutUs from '../pages/AboutUs';
 import University from '../pages/University';
 import UniversityComparisonPage from '../pages/UniversityComparisonPage.jsx';
+import Courses from '../pages/Courses.jsx';
 
 
 const routes = createBrowserRouter(
@@ -28,6 +29,10 @@ const routes = createBrowserRouter(
                     path:'/:university-name',
                     element: <University />
                 },
+                {
+                    path: '/course-college',
+                    element: <Courses />
+                }
             ]
         }
     ]
