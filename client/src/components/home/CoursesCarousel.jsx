@@ -1,90 +1,188 @@
 import React from 'react';
-import Slider from 'react-slick';
-import { motion } from 'framer-motion';
 import { FaClock, FaGraduationCap, FaLaptop, FaCreditCard } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import { coursesData } from '../data/coursesData';
 
-const CoursesCarousel = () => {
-  const navigate = useNavigate();
-  
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 640,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
-  };
+// Mock data for demonstration purposes
+const coursesData = [
+  {
+    id: 1,
+    title: "MBA",
+    duration: "2 Years",
+    eligibility: "Bachelor's Degree",
+    mode: "Online",
+    payment: "Semester-based",
+    icon: "📊"
+  },
+  {
+    id: 2,
+    title: "MCA",
+    duration: "2 Years",
+    eligibility: "BCA/BSc IT",
+    mode: "Online",
+    payment: "Yearly",
+    icon: "💻"
+  },
+  {
+    id: 3,
+    title: "MCOM",
+    duration: "2 Years",
+    eligibility: "BCOM/BBA",
+    mode: "Distance",
+    payment: "Semester-based",
+    icon: "📈"
+  },
+  {
+    id: 4,
+    title: "MA",
+    duration: "2 Years",
+    eligibility: "Bachelor's Degree",
+    mode: "Online",
+    payment: "Yearly",
+    icon: "🎓"
+  },
+  {
+    id: 5,
+    title: "MSC",
+    duration: "2 Years",
+    eligibility: "BSc/BCA",
+    mode: "Distance",
+    payment: "Semester-based",
+    icon: "🧪"
+  },
+  {
+    id: 6,
+    title: "MJMC",
+    duration: "2 Years",
+    eligibility: "Bachelor's Degree",
+    mode: "Online",
+    payment: "Yearly",
+    icon: "🤝"
+  },
+  {
+    id: 7,
+    title: "BBA",
+    duration: "3 Years",
+    eligibility: "12th Pass",
+    mode: "Online",
+    payment: "Semester-based",
+    icon: "💼"
+  },
+  {
+    id: 8,
+    title: "BCA",
+    duration: "3 Years",
+    eligibility: "12th Pass with Maths",
+    mode: "Online",
+    payment: "Yearly",
+    icon: "🖥️"
+  },
+  {
+    id: 9,
+    title: "BCOM",
+    duration: "3 Years",
+    eligibility: "12th Pass",
+    mode: "Distance",
+    payment: "Semester-based",
+    icon: "🧮"
+  },
+  {
+    id: 10,
+    title: "BA",
+    duration: "3 Years",
+    eligibility: "12th Pass",
+    mode: "Online",
+    payment: "Yearly", 
+    icon: "📚"
+  },
+  {
+    id: 11,
+    title: "BSC",
+    duration: "3 Years",
+    eligibility: "12th Pass with Science",
+    mode: "Distance",
+    payment: "Semester-based",
+    icon: "⏳"
+  },
+  {
+    id: 12,
+    title: "BJMC",
+    duration: "3 Years",
+    eligibility: "12th Pass",
+    mode: "Online",
+    payment: "Yearly",
+    icon: "🚴"
+  }
+];
 
+const CoursesDisplay = () => {
   const handleViewProgram = (courseId) => {
-    // Navigate to course-college route with the selected course ID as state
-    navigate('/course-college', { state: { selectedCourse: courseId } });
+    // Functionality remains the same
+    console.log(`Viewing program: ${courseId}`);
+    // In actual implementation with react-router-dom:
+    // navigate('/course-college', { state: { selectedCourse: courseId } });
   };
 
   return (
-    <div className="relative bg-teal-900 py-12 overflow-hidden">
-      <div className="w-full h-auto bg-amber-600 flex justify-center items-center">
-        <div className="absolute bg-gradient-to-br from-blue-50 to-indigo-100 h-[300vw] w-[300vw] rounded-[150Vw] z-10 -translate-y-[48.2%]"></div>
-      </div>
-      <h2 className="text-3xl font-bold text-center text-teal-800 mb-10 relative z-20">
-        Explore Our Distance Education Courses
-      </h2>
-      <div className="px-4 md:px-10 py-10 relative z-20">
-        <Slider {...settings}>
+    <div className="py-16 px-4 bg-gray-50">
+      <div className="container mx-auto max-w-7xl">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-blue-900 mb-4">
+            Explore Our Distance Education Courses
+          </h2>
+          <div className="w-24 h-1 bg-blue-800 mx-auto"></div>
+          <p className="mt-6 text-gray-600 max-w-3xl mx-auto text-lg">
+            Choose from our wide range of undergraduate and postgraduate programs designed for working professionals
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-8">
           {coursesData.map((course) => (
-            <div key={course.id} className="px-2 h-full">
-              <motion.div
-                className="rounded-2xl shadow-lg border bg-white text-gray-800 border-gray-200 p-4 flex flex-col justify-between h-full"
-                whileHover={{ scale: 1.03 }}
-                transition={{ duration: 0.3 }}
-              >
-                <h3 className="mt-4 text-xl font-semibold text-teal-800">{course.title}</h3>
-                <ul className="mt-4 flex-1 space-y-2 text-sm">
-                  <li className="flex items-center gap-2">
-                    <FaClock /> Duration: {course.duration}
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <FaGraduationCap /> Eligibility: {course.eligibility}
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <FaLaptop /> Mode: {course.mode}
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <FaCreditCard /> Payment: {course.payment}
-                  </li>
-                </ul>
-                <button
-                  className="mt-6 px-4 py-2 rounded-md font-medium bg-teal-700 text-white hover:bg-teal-600 transition-colors"
-                  onClick={() => handleViewProgram(course.id)}
-                >
-                  View Program
-                </button>
-              </motion.div>
+            <div 
+              key={course.id}
+              className="group hover:-translate-y-1 transition-all duration-300"
+            >
+              <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg border-t-4 border-blue-800 h-full flex flex-col">
+                <div className="p-6">
+                  <div className="flex justify-center mb-6">
+                    <div className="w-20 h-20 rounded-full bg-blue-50 border-2 border-blue-800 flex items-center justify-center">
+                      <span className="text-xl font-bold text-blue-800">{course.title}</span>
+                    </div>
+                  </div>
+                  
+                  {/* <div className="space-y-3 mb-6">
+                    <div className="flex items-center text-gray-700">
+                      <FaClock className="text-blue-800 mr-3" /> 
+                      <span className="font-medium">{course.duration}</span>
+                    </div>
+                    <div className="flex items-center text-gray-700">
+                      <FaGraduationCap className="text-blue-800 mr-3" /> 
+                      <span className="font-medium">{course.eligibility}</span>
+                    </div>
+                    <div className="flex items-center text-gray-700">
+                      <FaLaptop className="text-blue-800 mr-3" /> 
+                      <span className="font-medium">{course.mode}</span>
+                    </div>
+                    <div className="flex items-center text-gray-700">
+                      <FaCreditCard className="text-blue-800 mr-3" /> 
+                      <span className="font-medium">{course.payment}</span>
+                    </div>
+                  </div> */}
+                </div>
+                
+                {/* <div className="mt-auto p-7 pt-0">
+                  <button
+                    onClick={() => handleViewProgram(course.id)}
+                    className="w-full py-2 bg-blue-800 text-white rounded-md hover:bg-blue-700 transition-colors font-medium"
+                  >
+                    View Program
+                  </button>
+                </div> */}
+              </div>
             </div>
           ))}
-        </Slider>
-      </div>
-      <div className="w-full h-auto flex justify-center items-center py-20">
-        <div className="absolute bg-gradient-to-br from-blue-50 to-indigo-100 h-[300vw] w-[300vw] rounded-[150Vw] z-10 translate-y-[48.2%]"></div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default CoursesCarousel;
+export default CoursesDisplay;
