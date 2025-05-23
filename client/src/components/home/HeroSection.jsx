@@ -67,7 +67,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-screen overflow-hidden text-white">
+    <div className="relative rounded-b-xl w-full h-screen overflow-hidden text-white">
       {/* Background Image */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -88,7 +88,7 @@ const HeroSection = () => {
   animate={{ opacity: 1, y: 0 }}
   exit={{ opacity: 0, y: 30 }}
   transition={{ duration: 0.8 }}
-  className="relative z-10 p-6 md:p-12 bg-black/50 h-full flex flex-col justify-center"
+  className="relative z-10 p-6 md:p-12 bg-black/60 h-full flex flex-col justify-center"
 >
   <motion.h1
     initial={{ opacity: 0, y: 20 }}
@@ -97,7 +97,7 @@ const HeroSection = () => {
     className="text-4xl md:text-5xl font-bold"
   >
     {universities[currentIndex].name.split(' ')[0]}{' '}
-    <span className="text-yellow-400">
+    <span className="text-red-500">
       {universities[currentIndex].name.split(' ').slice(1).join(' ')}
     </span>
   </motion.h1>
@@ -120,7 +120,7 @@ const HeroSection = () => {
     <button className="bg-white text-black font-semibold px-4 py-2 border border-white hover:bg-gray-200 transition">
       Apply To University
     </button>
-    <button className="bg-teal-700 text-yellow-400 flex items-center gap-2 px-4 py-2 hover:bg-teal-600 transition">
+    <button className="bg-red-700 text-white-400 flex items-center gap-2 px-4 py-2 hover:bg-red-600 transition">
       <FaPhoneAlt /> Talk To Counsellor
     </button>
   </motion.div>
