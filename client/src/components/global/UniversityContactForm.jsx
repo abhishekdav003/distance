@@ -17,9 +17,9 @@ const UniversityContactForm = ({ universityName, logoUrl , onClose }) => {
   };
 
   return (
-    <div className="absolute flex justify-center items-center min-h-screen w-full bg-teal-700/60 p-4">
+    <div className="absolute w-full  p-4 z-30">
       <div className="absolute top-4 right-4">
-        <button onClick={onClose} className="text-white text-4xl cursor-pointer">
+        <button onClick={onClose} className="text-white text-4xl cursor-pointer absolute right-5 top-2">
           &times;
         </button> 
       </div>
@@ -34,7 +34,7 @@ const UniversityContactForm = ({ universityName, logoUrl , onClose }) => {
             animate={{ opacity: 1, scale: 1 }}
             className="flex flex-col items-center justify-center p-8 h-full"
           >
-            <div className="w-16 h-16 bg-teal-500 rounded-full flex items-center justify-center mb-4">
+            <div className="w-16 h-16 rounded-full flex items-center justify-center mb-4">
               <FiCheck className="text-white text-2xl" />
             </div>
             <h2 className="text-2xl font-bold text-gray-800">Thank You!</h2>
@@ -44,9 +44,9 @@ const UniversityContactForm = ({ universityName, logoUrl , onClose }) => {
           </motion.div>
         ) : (
           <>
-            <div className="bg-gradient-to-r from-teal-500 to-teal-700 p-6 flex items-center justify-center flex-col">
+            <div className="bg-gradient-to-r from-red-600 via-red-500 to-red-700 p-6 flex items-center justify-center flex-col">
               {logoUrl && (
-                <img src={logoUrl} alt={`${universityName} logo`} className="h-16 mb-4 mix-blend-color-burn" />
+                <img src={logoUrl} alt={`${universityName} logo`} className="h-16 mb-4 rounded-xs" />
               )}
               <h2 className="text-xl font-bold text-white text-center">{universityName}</h2>
               <p className="text-sm text-teal-100 mt-2 text-center">
@@ -146,7 +146,7 @@ const UniversityContactForm = ({ universityName, logoUrl , onClose }) => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   type="submit"
-                  className="w-full bg-gradient-to-r from-teal-500 to-teal-700 text-white py-3 rounded-lg font-medium shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer"
+                  className="w-full bg-gradient-to-r from-red-700 via-red-500 to-red-700 text-white py-3 rounded-lg font-medium shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer"
                 >
                   Submit Inquiry
                 </motion.button>

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -26,8 +26,8 @@ export default function University() {
 
   
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-5xl mx-auto">
+    <div className="min-h-screen bg-gray-50 pb-12 ">
+      <div className="">
         <UniversityCard university={university} />
         
       </div>
@@ -47,20 +47,73 @@ const handleContactFormToggle = () => {
     setContactFormVisible(!contactFormVisible);
   }
   return (
-    <motion.div
+  <div>
+   <div className="w-full bg-red-100 h-auto p-6 text-red-600">
+  {/* University Info Section */}
+  <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+    
+    {/* Text and Details */}
+    <div className="space-y-4">
+      <h2 className="text-3xl font-bold">{university.universityName}</h2>
+      <p className="text-base">
+        {university.description}
+      </p>
+
+      {/* Approvals Logos */}
+      <div className="flex gap-4">
+        {university?.regulatory.map((logo)=>(
+        <img src={logo} alt="" className="h-12" />
+        ))}
+        
+       
+      </div>
+
+      {/* Program Buttons */}
+      <div className="flex flex-wrap gap-2">
+        {university?.programNames?.map((course) => (
+          <span
+            key={course}
+            className="bg-white text-black px-4 py-1 rounded-full text-sm font-medium"
+          >
+            {course}
+          </span>
+        ))}
+      </div>
+
+      {/* CTA Buttons */}
+      <div className="flex gap-4 mt-4 flex-wrap">
+        <button onClick={handleContactFormToggle} className="bg-orange-500 px-5 py-2 rounded text-white font-semibold hover:bg-orange-600">
+          Download Brochure
+        </button>
+        <button onClick={handleContactFormToggle} className="bg-blue-600 px-5 py-2 rounded text-white font-semibold hover:bg-blue-700">
+          Get Help
+        </button>
+        <Link  to={'/compare-colleges'} className="bg-green-600 px-5 py-2 rounded text-white font-semibold hover:bg-green-700 cursor-pointer">
+          Add to Compare
+        </Link>
+      </div>
+    </div>
+
+    {/* Image & Rating */}
+    <div className="relative w-full">
+      <img src={university.img} alt="LPU Campus" className="w-full rounded" />
+      <div className="absolute top-4 right-4 bg-white px-2 py-1 rounded flex items-center gap-1 text-yellow-500 text-lg">
+        ★ ★ ★ ★ ☆
+      </div>
+    </div>
+  </div>
+</div>
+
+      <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className=" relative bg-white rounded-xl shadow-xl overflow-hidden"
+      className=" relative bg-white rounded-xl shadow-xl "
     >
-      {contactFormVisible && (
-          <div className=" w-full bg-amber-950">
-            <UniversityContactForm universityName={university.universityName} logoUrl={university.logo} onClose={handleContactFormToggle} />
-          </div>
-        )}
+      
       {/* University Header */}
       <div className=" flex  relative text-red-700 p-6">
-        <img src={university?.img} alt="" className=" md:h-56 w-full scale-125 opacity-35"/>
+        <img src={university?.img} alt="" className=" md:h-56 w-full scale-110 opacity-35"/>
         <div className=" absolute top-10 flex flex-col md:gap-10">
           <div className="flex items-center mb-4 md:mb-0">
             <div className="bg-white p-3 rounded-full mr-4 text-red-700">
@@ -226,10 +279,15 @@ const handleContactFormToggle = () => {
           </div>
         )}
       </div>
-
+{contactFormVisible && (
+          <div className=" fixed top-6 w-full bg-amber-950">
+            <UniversityContactForm universityName={university.universityName} logoUrl={university.logo} onClose={handleContactFormToggle} />
+          </div>
+        )}
       {/* CTA */}
       <div className="px-6 py-4 border-t border-gray-100 flex justify-between items-center">
         <span className="text-sm text-gray-500">Apply now for upcoming sessions</span>
+        
         <motion.button
         onClick={handleContactFormToggle}
           whileHover={{ scale: 1.05 }}
@@ -240,5 +298,6 @@ const handleContactFormToggle = () => {
         </motion.button>
       </div>
     </motion.div>
+  </div>
   );
 }
