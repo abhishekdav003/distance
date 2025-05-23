@@ -10,6 +10,8 @@ import {
 } from "react-icons/fa";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 const universities = [
   {
     name: "Manipal University",
@@ -31,16 +33,7 @@ const universities = [
     image: "/images/lpu.webp",
     logo: "/logos/lpu.webp"
   },
-  {
-    name: "Chandigarh University",
-    since: 2012,
-    courses: "Online Masters/ Bachelors",
-    accreditation: "UGC-entitled degree programme",
-    ranking: "NIRF 27, NAAC A+ accredited",
-    fee: "₹7,500 / Month",
-    image: "/images/cu.webp",
-    logo: "/logos/cu.webp"
-  },
+ 
   {
     name: "Amity University",
     since: 2005,
@@ -80,6 +73,16 @@ const universities = [
     fee: "₹8,500 / Month",
     image: "/images/dypatil.webp",
     logo: "/logos/dpu-logo.webp"
+  },
+   {
+    name: "Chandigarh University",
+    since: 2012,
+    courses: "Online Masters/ Bachelors",
+    accreditation: "UGC-entitled degree programme",
+    ranking: "NIRF 27, NAAC A+ accredited",
+    fee: "₹7,500 / Month",
+    image: "/images/cu.webp",
+    logo: "/logos/cu.webp"
   },
   {
     name: "IMT Ghaziabad",
@@ -139,15 +142,15 @@ export default function UniversityCarousel() {
       {/* Navigation Buttons */}
       <button
         onClick={() => sliderRef.current?.slickPrev()}
-        className="absolute left-2 top-1/2 -translate-y-1/2 z-10 p-2 bg-white rounded-full shadow-md hover:bg-gray-100"
+        className="absolute left-2 top-1/2 -translate-y-1/2 z-10 p-2 text-white bg-red-500 rounded-full shadow-md hover:bg-red-700"
       >
-        <IoIosArrowBack className="text-xl text-gray-700" />
+        <IoIosArrowBack className="text-xl " />
       </button>
       <button
         onClick={() => sliderRef.current?.slickNext()}
-        className="absolute right-2 top-1/2 -translate-y-1/2 z-10 p-2 bg-white rounded-full shadow-md hover:bg-gray-100"
+        className="absolute right-2 top-1/2 -translate-y-1/2 z-10 p-2 text-white bg-red-500 rounded-full shadow-md hover:bg-red-700"
       >
-        <IoIosArrowForward className="text-xl text-gray-700" />
+        <IoIosArrowForward className="text-xl " />
       </button>
 
       <Slider ref={sliderRef} {...settings}>
@@ -157,9 +160,9 @@ export default function UniversityCarousel() {
             <motion.div
               key={index}
               whileHover={{ scale: 1.03 }}
-              className="px-2"
+              className="px-4"
             >
-              <div className=" relative max-w-[75vw] md:max-w-[20vw] mx-auto bg-white rounded-xl shadow-md overflow-hidden cursor-pointer border border-gray-200">
+              <div className=" relative max-w-[75vw] md:max-w-[24vw] mx-auto bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
                 
                 <img
                   src={uni.image}
@@ -187,13 +190,13 @@ export default function UniversityCarousel() {
                     </p>
                   </div>
                 </div>
-                <div className=" bg-red-700 lg:bg-red-600 lg:hover:bg-red-700 flex justify-center items-center py-3">
-                  <Link to={`/${slug}`}>
-                    <button className=" text-white text-sm hover:underline">
+                <Link to={`/${slug}`}>
+                <div className=" bg-red-700 lg:bg-red-600 lg:hover:bg-red-700 flex justify-center items-center py-3 cursor-pointer">
+                    <button className=" text-white text-sm cursor-pointer ">
                       Know More
                     </button>
-                  </Link>
                 </div>
+                </Link>
               </div>
             </motion.div>
           );

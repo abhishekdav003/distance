@@ -12,7 +12,7 @@ const Home = () => {
         {/* <CourseCarousel /> */}
       <InfiniteCollegeLogos />
       <CoursesCarousel />
-        {/* <UniversityCarousel /> */}
+        <UniversityCarousel />
     </div>
   )
 }
