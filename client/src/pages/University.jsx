@@ -59,10 +59,11 @@ const handleContactFormToggle = () => {
           </div>
         )}
       {/* University Header */}
-      <div className="bg-gradient-to-r from-teal-800 to-teal-600 text-white p-6">
-        <div className="flex flex-col md:flex-row md:items-center justify-between">
+      <div className=" flex  relative text-red-700 p-6">
+        <img src={university?.img} alt="" className=" md:h-56 w-full scale-125 opacity-35"/>
+        <div className=" absolute top-10 flex flex-col md:gap-10">
           <div className="flex items-center mb-4 md:mb-0">
-            <div className="bg-white p-3 rounded-full mr-4 text-teal-700">
+            <div className="bg-white p-3 rounded-full mr-4 text-red-700">
               <FaUniversity size={28} />
             </div>
             <div>
@@ -74,16 +75,16 @@ const handleContactFormToggle = () => {
             </div>
           </div>
           
-          <div className="flex flex-wrap gap-3 mt-4 md:mt-0">
-            <div className="flex items-center bg-teal-900 bg-opacity-40 rounded-full px-3 py-1">
+          <div className="flex flex-wrap gap-3 mt-4 md:mt-0 text-white">
+            <div className="flex items-center bg-red-900 bg-opacity-40 rounded-full px-3 py-1">
               <FaCalendarAlt className="mr-1" />
               <span className="text-sm">Est. {university.established}</span>
             </div>
-            <div className="flex items-center bg-teal-900 bg-opacity-40 rounded-full px-3 py-1">
+            <div className="flex items-center bg-red-900 bg-opacity-40 rounded-full px-3 py-1">
               <FaMedal className="mr-1" />
               <span className="text-sm">{university.accreditation}</span>
             </div>
-            <div className="flex items-center bg-teal-900 bg-opacity-40 rounded-full px-3 py-1">
+            <div className="flex items-center bg-red-900 bg-opacity-40 rounded-full px-3 py-1">
               <FaStar className="mr-1" />
               <span className="text-sm">{university.features.studentRating}</span>
             </div>
@@ -98,7 +99,7 @@ const handleContactFormToggle = () => {
           {university.approvals.map((approval, i) => (
             <span 
               key={i} 
-              className="bg-teal-50 text-teal-700 text-xs font-semibold px-2.5 py-0.5 rounded-md mr-2 mb-2"
+              className="bg-red-50 text-red-700 text-xs font-semibold px-2.5 py-0.5 rounded-md mr-2 mb-2"
             >
               {approval}
             </span>
@@ -109,7 +110,7 @@ const handleContactFormToggle = () => {
       {/* Programs */}
       <div className="px-6 py-4">
         <h3 className="font-bold text-lg text-gray-800 mb-4 flex items-center">
-          <FaGraduationCap className="mr-2 text-teal-600" />
+          <FaGraduationCap className="mr-2 text-red-600" />
           Programs Offered
         </h3>
 
@@ -122,8 +123,8 @@ const handleContactFormToggle = () => {
                 whileHover={{ backgroundColor: "rgba(2, 94, 104, 0.05)" }}
               >
                 <div className="flex items-center">
-                  <div className="bg-teal-100 p-2 rounded-full mr-3">
-                    <FaGraduationCap className="text-teal-700" size={16} />
+                  <div className="bg-red-100 p-2 rounded-full mr-3">
+                    <FaGraduationCap className="text-red-700" size={16} />
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-800">{program.degree}</h4>
@@ -150,9 +151,9 @@ const handleContactFormToggle = () => {
                   </div>
                 </div>
                 {expandedProgram === index ? (
-                  <FaChevronUp className="text-teal-600" />
+                  <FaChevronUp className="text-red-600" />
                 ) : (
-                  <FaChevronDown className="text-teal-600" />
+                  <FaChevronDown className="text-red-600" />
                 )}
               </motion.button>
 
@@ -178,9 +179,9 @@ const handleContactFormToggle = () => {
                             {program.specializations.map((spec, i) => (
                               <span
                                 key={i}
-                                className="bg-white border border-teal-200 text-teal-700 text-xs px-2 py-1 rounded-full flex items-center"
+                                className="bg-white border border-red-200 text-red-700 text-xs px-2 py-1 rounded-full flex items-center"
                               >
-                                <FaCheckCircle className="mr-1 text-teal-500" size={10} />
+                                <FaCheckCircle className="mr-1 text-red-500" size={10} />
                                 {spec}
                               </span>
                             ))}
@@ -201,16 +202,16 @@ const handleContactFormToggle = () => {
         <h3 className="font-bold text-lg text-gray-800 mb-3">University Features</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="bg-white p-4 rounded-lg shadow-sm">
-            <h4 className="font-medium text-teal-700 mb-2">Learning Methodology</h4>
+            <h4 className="font-medium text-red-700 mb-2">Learning Methodology</h4>
             <p className="text-sm text-gray-600">{university.features.learningMethodology}</p>
           </div>
           
           <div className="bg-white p-4 rounded-lg shadow-sm">
-            <h4 className="font-medium text-teal-700 mb-2">Support Services</h4>
+            <h4 className="font-medium text-red-700 mb-2">Support Services</h4>
             <ul className="text-sm text-gray-600 space-y-1">
               {university.features.supportServices.map((service, i) => (
                 <li key={i} className="flex items-center">
-                  <FaCheckCircle className="mr-2 text-teal-500" size={12} />
+                  <FaCheckCircle className="mr-2 text-red-500" size={12} />
                   {service}
                 </li>
               ))}
@@ -219,7 +220,7 @@ const handleContactFormToggle = () => {
         </div>
         
         {university.features.placementSupport && (
-          <div className="mt-4 flex items-center bg-teal-50 text-teal-700 p-3 rounded-lg">
+          <div className="mt-4 flex items-center bg-red-50 text-red-700 p-3 rounded-lg">
             <FaUserGraduate className="mr-2" />
             <span className="font-medium">Placement Support Available</span>
           </div>
@@ -233,7 +234,7 @@ const handleContactFormToggle = () => {
         onClick={handleContactFormToggle}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="bg-teal-700 hover:bg-teal-800 text-white font-medium py-2 px-6 rounded-lg shadow-md focus:outline-none"
+          className="bg-red-700 hover:bg-red-800 text-white font-medium py-2 px-6 rounded-lg shadow-md focus:outline-none"
         >
           Apply Now
         </motion.button>
