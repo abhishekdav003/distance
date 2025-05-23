@@ -89,7 +89,7 @@ const InfiniteCollegeLogos = () => {
         {doubledColleges.map((college, index) => (
           <div
             key={`${college.name}-${index}`}
-            className="flex-shrink-0 w-32 h-15 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex items-center justify-center p-2 border border-gray-100"
+            className="flex-shrink-0 w-25 h-11 md:w-32 md:h-15 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex items-center justify-center p-2 border border-gray-100"
           >
             <img
               src={college.logo}
