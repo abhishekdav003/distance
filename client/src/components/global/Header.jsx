@@ -11,7 +11,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo and Title */}
         <div className="flex items-center space-x-4">
-         <Link to={'/'}> <img src='./logo.png' alt="EduKyu Logo" className="h-8 w-auto" /></Link>
+         <Link to={'/'}> <img src='/logos/main.webp' alt="EduKyu Logo" className="h-8 w-auto" /></Link>
           <span className='h-10 w-0.5 bg-black '></span>
           <span className="text-base md:text-lg font-semibold text-gray-800">Online and Distance Education</span>
         </div>
@@ -21,7 +21,7 @@ export default function Header() {
           <div className="relative">
             <button
               onClick={() => setDropdownOpen(!isDropdownOpen)}
-              className="bg-yellow-300 px-4 py-2 rounded-full flex items-center space-x-2 focus:outline-none"
+              className="bg-red-400 px-4 py-2 rounded-full flex items-center space-x-2 focus:outline-none"
             >
               <span>Online Courses</span>
               <FaChevronDown className="text-xs" />
@@ -54,7 +54,7 @@ export default function Header() {
           <div className="relative">
             <button
               onClick={() => setDropdownOpen(!isDropdownOpen)}
-              className="bg-yellow-300 px-4 py-2 rounded-full flex items-center space-x-2 w-full"
+              className="bg-red-300 px-4 py-2 rounded-full flex items-center space-x-2 w-full"
             >
               <span>Online Courses</span>
               <FaChevronDown className="text-xs" />
