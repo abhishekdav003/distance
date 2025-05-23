@@ -17,9 +17,9 @@ const UniversityContactForm = ({ universityName, logoUrl , onClose }) => {
   };
 
   return (
-    <div className="absolute w-full  p-4 z-30">
+    <div className="absolute flex justify-center items-center min-h-screen w-full bg-black/60 p-4 z-30">
       <div className="absolute top-4 right-4">
-        <button onClick={onClose} className="text-white text-4xl cursor-pointer absolute right-5 top-2">
+        <button onClick={onClose} className="text-white text-4xl cursor-pointer">
           &times;
         </button> 
       </div>

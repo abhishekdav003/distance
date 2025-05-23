@@ -113,7 +113,7 @@ const handleContactFormToggle = () => {
       
       {/* University Header */}
       <div className=" flex  relative text-red-700 p-6">
-        <img src={university?.img} alt="" className=" md:h-56 w-full scale-110 opacity-35"/>
+        <img src={university?.img} alt="" className=" md:h-56 w-full scale-110 md:scale-0 opacity-35"/>
         <div className=" absolute top-10 flex flex-col md:gap-10">
           <div className="flex items-center mb-4 md:mb-0">
             <div className="bg-white p-3 rounded-full mr-4 text-red-700">
@@ -280,7 +280,7 @@ const handleContactFormToggle = () => {
         )}
       </div>
 {contactFormVisible && (
-          <div className=" fixed top-6 w-full bg-amber-950">
+          <div className=" fixed top-0 md:h-[70vh] w-full bg-amber-950">
             <UniversityContactForm universityName={university.universityName} logoUrl={university.logo} onClose={handleContactFormToggle} />
           </div>
         )}
