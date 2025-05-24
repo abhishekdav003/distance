@@ -117,7 +117,7 @@ function UniversityCard({ university }) {
                   whileHover={{ scale: 1.1, rotate: 2 }}
                   className="bg-white bg-opacity-20 backdrop-blur-sm p-3 rounded-xl border border-red-300 border-opacity-30"
                 >
-                  <img src={logo} alt="" className="h-12 w-auto object-contain filter brightness-0 invert" />
+                  <img src={logo} alt="" className="h-12 w-auto object-contain filter brightness-110" />
                 </motion.div>
               ))}
             </motion.div>
@@ -299,14 +299,14 @@ function UniversityCard({ university }) {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
-        className="max-w-7xl mx-auto bg-white rounded-3xl shadow-2xl border border-red-100 overflow-hidden my-8 mx-4 lg:mx-8"
+        className="max-w-7xl  bg-white rounded-3xl shadow-2xl border border-red-100 overflow-hidden my-8 mx-4 lg:mx-8"
       >
         {/* University Header with Parallax Effect */}
         <div className="relative text-red-700 bg-gradient-to-br from-red-50 to-red-100 overflow-hidden">
           <motion.img
             src={university?.img}
             alt={`${university?.universityName} banner`}
-            className="md:h-64 w-full object-cover opacity-20"
+            className=" h-96 md:h-64 w-full object-cover opacity-20"
             initial={{ scale: 1.1 }}
             animate={{ scale: 1 }}
             transition={{ duration: 1.2 }}

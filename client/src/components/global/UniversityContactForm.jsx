@@ -23,110 +23,71 @@ const UniversityContactForm = ({ universityName, logoUrl, onClose }) => {
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden"
+        className="w-full max-w-md sm:max-w-sm bg-white rounded-2xl shadow-xl overflow-hidden max-h-[90vh] sm:max-h-[95vh] overflow-y-auto"
       >
         {isSubmitted ? (
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="flex flex-col items-center justify-center p-8 text-center space-y-4"
+            className="flex flex-col items-center justify-center p-6 sm:p-4 text-center space-y-4"
           >
-            <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center text-white text-2xl shadow-md">
+            <div className="w-14 h-14 bg-red-600 rounded-full flex items-center justify-center text-white text-xl shadow-md">
               <FiCheck />
             </div>
-            <h2 className="text-2xl font-semibold text-gray-800">Thank You!</h2>
+            <h2 className="text-xl font-semibold text-gray-800">Thank You!</h2>
             <p className="text-gray-600 text-sm">We’ve received your inquiry and will reach out shortly.</p>
           </motion.div>
         ) : (
           <>
-            <div className="bg-gradient-to-r from-red-800 via-red-600 to-red-700 p-6 text-center space-y-2">
+            <div className="bg-gradient-to-r from-red-800 via-red-600 to-red-700 p-4 sm:p-3 text-center space-y-2">
               {logoUrl && (
-                <img src={logoUrl} alt={`${universityName} logo`} className="h-14 mx-auto rounded-sm" />
+                <img src={logoUrl} alt={`${universityName} logo`} className="h-14 sm:h-8 mx-auto rounded-sm" />
               )}
               <div className="inline-block bg-red-50 text-red-700 text-xs font-medium px-3 py-1 rounded-full shadow-sm">
                 Official Inquiry Form
               </div>
-              <h2 className="text-xl font-bold text-white">{universityName}</h2>
-              <p className="text-red-100 text-sm">Interested in our programs? Share your details below.</p>
+              <h2 className="text-lg sm:text-base font-bold text-white">{universityName}</h2>
+              <p className="text-red-100 text-xs sm:text-[11px]">Interested in our programs? Share your details below.</p>
             </div>
 
-            <div className="p-6 space-y-5">
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                {/* Name Field */}
-                <div>
-                  <label className="text-sm text-gray-700 font-medium">Name</label>
-                  <div className="relative">
-                    <FiUser className="absolute left-3 top-1/2 -translate-y-1/2 text-red-400" />
-                    <input
-                      {...register("name", { required: "Name is required" })}
-                      className={`w-full pl-10 pr-3 py-2 border rounded-full text-sm focus:outline-none transition-all ${
-                        errors.name ? 'border-red-500' : 'border-gray-300 focus:ring-2 focus:ring-red-300'
-                      }`}
-                      placeholder="Enter your name"
-                    />
+            <div className="p-6 sm:p-4 space-y-5">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 sm:space-y-2">
+                {/* Reusable Field Component */}
+                {[
+                  { id: 'name', icon: FiUser, label: 'Name', placeholder: 'Enter your name' },
+                  { id: 'email', icon: FiMail, label: 'Email', placeholder: 'Enter your email' },
+                  { id: 'phone', icon: FiPhone, label: 'Phone', placeholder: 'Enter your phone number' },
+                  { id: 'city', icon: FiMapPin, label: 'City', placeholder: 'Enter your city' }
+                ].map(({ id, icon: Icon, label, placeholder }) => (
+                  <div key={id}>
+                    <label className="text-sm text-gray-700 font-medium  sm:block">{label}</label>
+                    <div className="relative">
+                      <Icon className="absolute left-3 top-1/2 -translate-y-1/2 text-red-400" />
+                      <input
+                        {...register(id, {
+                          required: `${label} is required`,
+                          ...(id === "email" && {
+                            pattern: {
+                              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                              message: "Invalid email address"
+                            }
+                          }),
+                          ...(id === "phone" && {
+                            pattern: {
+                              value: /^\+?[0-9]{10,14}$/,
+                              message: "Invalid phone number"
+                            }
+                          }),
+                        })}
+                        className={`w-full pl-10 pr-3 py-2 border rounded-full text-sm focus:outline-none transition-all ${
+                          errors[id] ? 'border-red-500' : 'border-gray-300 focus:ring-2 focus:ring-red-300'
+                        }`}
+                        placeholder={placeholder}
+                      />
+                    </div>
+                    {errors[id] && <p className="text-xs text-red-500 mt-1">{errors[id].message}</p>}
                   </div>
-                  {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name.message}</p>}
-                </div>
-
-                {/* Email Field */}
-                <div>
-                  <label className="text-sm text-gray-700 font-medium">Email</label>
-                  <div className="relative">
-                    <FiMail className="absolute left-3 top-1/2 -translate-y-1/2 text-red-400" />
-                    <input
-                      {...register("email", {
-                        required: "Email is required",
-                        pattern: {
-                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                          message: "Invalid email address"
-                        }
-                      })}
-                      className={`w-full pl-10 pr-3 py-2 border rounded-full text-sm focus:outline-none transition-all ${
-                        errors.email ? 'border-red-500' : 'border-gray-300 focus:ring-2 focus:ring-red-300'
-                      }`}
-                      placeholder="Enter your email"
-                    />
-                  </div>
-                  {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email.message}</p>}
-                </div>
-
-                {/* Phone Field */}
-                <div>
-                  <label className="text-sm text-gray-700 font-medium">Phone</label>
-                  <div className="relative">
-                    <FiPhone className="absolute left-3 top-1/2 -translate-y-1/2 text-red-400" />
-                    <input
-                      {...register("phone", {
-                        required: "Phone is required",
-                        pattern: {
-                          value: /^\+?[0-9]{10,14}$/,
-                          message: "Invalid phone number"
-                        }
-                      })}
-                      className={`w-full pl-10 pr-3 py-2 border rounded-full text-sm focus:outline-none transition-all ${
-                        errors.phone ? 'border-red-500' : 'border-gray-300 focus:ring-2 focus:ring-red-300'
-                      }`}
-                      placeholder="Enter your phone number"
-                    />
-                  </div>
-                  {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone.message}</p>}
-                </div>
-
-                {/* City Field */}
-                <div>
-                  <label className="text-sm text-gray-700 font-medium">City</label>
-                  <div className="relative">
-                    <FiMapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-red-400" />
-                    <input
-                      {...register("city", { required: "City is required" })}
-                      className={`w-full pl-10 pr-3 py-2 border rounded-full text-sm focus:outline-none transition-all ${
-                        errors.city ? 'border-red-500' : 'border-gray-300 focus:ring-2 focus:ring-red-300'
-                      }`}
-                      placeholder="Enter your city"
-                    />
-                  </div>
-                  {errors.city && <p className="text-xs text-red-500 mt-1">{errors.city.message}</p>}
-                </div>
+                ))}
 
                 {/* Consent */}
                 <div>
@@ -143,7 +104,7 @@ const UniversityContactForm = ({ universityName, logoUrl, onClose }) => {
                   {errors.consent && <p className="text-xs text-red-500 mt-1">{errors.consent.message}</p>}
                 </div>
 
-                {/* Submit Button */}
+                {/* Submit */}
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
