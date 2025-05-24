@@ -677,61 +677,66 @@ function UniversityCard({ university }) {
         </motion.section>
 
         {/* Accreditations Section */}
-        <motion.section 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.4 }}
-          className="px-6 md:px-12 py-12 bg-gradient-to-br from-red-50 to-white"
-        >
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl font-bold text-center mb-12 text-red-800"
-          >
-            🏆 Accreditations & Approvals
-          </motion.h2>
-          
-          <div className="overflow-hidden rounded-2xl shadow-2xl border border-red-200">
-            <div className="overflow-x-auto">
-              <table className="min-w-full bg-white">
-                <thead className="bg-gradient-to-r from-red-600 to-red-700">
-                  <tr>
-                    <th className="text-left text-lg font-bold text-white px-8 py-6">Logo</th>
-                    <th className="text-left text-lg font-bold text-white px-8 py-6">Accreditation</th>
-                    <th className="text-left text-lg font-bold text-white px-8 py-6">About</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {university?.acreditationsApprovals?.map((item, index) => (
-                    <motion.tr 
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.1 }}
-                      className="border-b border-red-100 hover:bg-red-50 transition-colors duration-300"
-                    >
-                      <td className="px-8 py-6">
-                        <motion.div
-                          whileHover={{ scale: 1.1, rotate: 5 }}
-                          className="w-16 h-16 bg-red-50 rounded-xl border-2 border-red-200 flex items-center justify-center shadow-md"
-                        >
-                          <img
-                            src={item.img}
-                            alt={item.AccreditationsApprovals}
-                            className="w-12 h-12 object-contain"
-                          />
-                        </motion.div>
-                      </td>
-                      <td className="px-8 py-6 font-bold text-red-800 text-lg">{item.AccreditationsApprovals}</td>
-                      <td className="px-8 py-6 text-red-700 leading-relaxed">{item.about}</td>
-                    </motion.tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </motion.section>
+<motion.section 
+  initial={{ opacity: 0, y: 30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, delay: 1.4 }}
+  className="px-4 md:px-12 py-12 bg-gradient-to-br from-red-50 to-white"
+>
+  <motion.h2 
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+    className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-red-800"
+  >
+    🏆 Accreditations & Approvals
+  </motion.h2>
+  
+  <div className="overflow-hidden rounded-2xl shadow-2xl border border-red-200">
+    <div className="overflow-x-auto w-full">
+      <table className="min-w-[640px] md:min-w-full bg-white">
+        <thead className="bg-gradient-to-r from-red-600 to-red-700">
+          <tr>
+            <th className="text-left text-base md:text-lg font-bold text-white px-6 md:px-8 py-4 md:py-6">Logo</th>
+            <th className="text-left text-base md:text-lg font-bold text-white px-6 md:px-8 py-4 md:py-6">Accreditation</th>
+            <th className="text-left text-base md:text-lg font-bold text-white px-6 md:px-8 py-4 md:py-6">About</th>
+          </tr>
+        </thead>
+        <tbody>
+          {university?.acreditationsApprovals?.map((item, index) => (
+            <motion.tr 
+              key={index}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className="border-b border-red-100 hover:bg-red-50 transition-colors duration-300"
+            >
+              <td className="px-6 md:px-8 py-4 md:py-6">
+                <motion.div
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  className="w-14 h-14 md:w-16 md:h-16 bg-red-50 rounded-xl border-2 border-red-200 flex items-center justify-center shadow-md"
+                >
+                  <img
+                    src={item.img}
+                    alt={item.AccreditationsApprovals}
+                    className="w-10 h-10 md:w-12 md:h-12 object-contain"
+                  />
+                </motion.div>
+              </td>
+              <td className="px-6 md:px-8 py-4 md:py-6 font-bold text-red-800 text-base md:text-lg">
+                {item.AccreditationsApprovals}
+              </td>
+              <td className="px-6 md:px-8 py-4 md:py-6 text-red-700 leading-relaxed text-sm md:text-base">
+                {item.about}
+              </td>
+            </motion.tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</motion.section>
+
 
         {/* Academic Approach Section */}
         <motion.section 
@@ -809,67 +814,72 @@ function UniversityCard({ university }) {
         </motion.section>
 
         {/* Top Hiring Partners */}
-        <motion.section 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.8 }}
-          className="px-6 md:px-12 py-12 bg-gradient-to-br from-red-50 to-white"
-        >
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl font-bold text-center mb-12 text-red-800 flex justify-center items-center gap-4"
-          >
-            <motion.div
-              whileHover={{ rotate: 15, scale: 1.1 }}
-              className="text-red-600"
+<motion.section 
+  initial={{ opacity: 0, y: 30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, delay: 1.8 }}
+  className="px-4 md:px-12 py-12 bg-gradient-to-br from-red-50 to-white"
+>
+  <motion.h2 
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+    className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-red-800 flex justify-center items-center gap-3 md:gap-4"
+  >
+    <motion.div
+      whileHover={{ rotate: 15, scale: 1.1 }}
+      className="text-red-600"
+    >
+      <FaUserGraduate />
+    </motion.div>
+    Top Hiring Partners
+  </motion.h2>
+  
+  <div className="overflow-hidden rounded-2xl shadow-2xl border border-red-200">
+    <div className="overflow-x-auto w-full">
+      <table className="min-w-[640px] md:min-w-full bg-white">
+        <thead className="bg-gradient-to-r from-red-600 to-red-700">
+          <tr>
+            <th className="px-6 md:px-8 py-4 md:py-6 text-left text-base md:text-lg font-bold text-white">Logo</th>
+            <th className="px-6 md:px-8 py-4 md:py-6 text-left text-base md:text-lg font-bold text-white">Company</th>
+            <th className="px-6 md:px-8 py-4 md:py-6 text-left text-base md:text-lg font-bold text-white">About</th>
+          </tr>
+        </thead>
+        <tbody>
+          {university?.Placement?.map((item, index) => (
+            <motion.tr 
+              key={index}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className="border-b border-red-100 hover:bg-red-50 transition-colors duration-300"
             >
-              <FaUserGraduate />
-            </motion.div>
-            Top Hiring Partners
-          </motion.h2>
-          
-          <div className="overflow-hidden rounded-2xl shadow-2xl border border-red-200">
-            <div className="overflow-x-auto">
-              <table className="min-w-full bg-white">
-                <thead className="bg-gradient-to-r from-red-600 to-red-700">
-                  <tr>
-                    <th className="px-8 py-6 text-left text-lg font-bold text-white">Logo</th>
-                    <th className="px-8 py-6 text-left text-lg font-bold text-white">Company</th>
-                    <th className="px-8 py-6 text-left text-lg font-bold text-white">About</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {university?.Placement?.map((item, index) => (
-                    <motion.tr 
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.1 }}
-                      className="border-b border-red-100 hover:bg-red-50 transition-colors duration-300"
-                    >
-                      <td className="px-8 py-6">
-                        <motion.div
-                          whileHover={{ scale: 1.1, rotate: 5 }}
-                          className="w-16 h-16 bg-red-50 rounded-xl border-2 border-red-200 flex items-center justify-center shadow-md"
-                        >
-                          <img 
-                            src={item?.img} 
-                            alt={item?.company} 
-                            className="w-12 h-12 object-contain" 
-                          />
-                        </motion.div>
-                      </td>
-                      <td className="px-8 py-6 font-bold text-red-800 text-lg">{item.company}</td>
-                      <td className="px-8 py-6 text-red-700 leading-relaxed">{item.about}</td>
-                    </motion.tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </motion.section>
+              <td className="px-6 md:px-8 py-4 md:py-6">
+                <motion.div
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  className="w-14 h-14 md:w-16 md:h-16 bg-red-50 rounded-xl border-2 border-red-200 flex items-center justify-center shadow-md"
+                >
+                  <img 
+                    src={item?.img} 
+                    alt={item?.company} 
+                    className="w-10 h-10 md:w-12 md:h-12 object-contain" 
+                  />
+                </motion.div>
+              </td>
+              <td className="px-6 md:px-8 py-4 md:py-6 font-bold text-red-800 text-base md:text-lg">
+                {item.company}
+              </td>
+              <td className="px-6 md:px-8 py-4 md:py-6 text-red-700 leading-relaxed text-sm md:text-base">
+                {item.about}
+              </td>
+            </motion.tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</motion.section>
+
 
         {/* Degree Section */}
         <motion.section 
