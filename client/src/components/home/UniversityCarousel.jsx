@@ -190,13 +190,16 @@ export default function UniversityCarousel() {
                     </p>
                   </div>
                 </div>
-                <Link to={`/${slug}`}>
+                <a href={`/${slug}`}>
                 <div className=" bg-red-700 lg:bg-red-600 lg:hover:bg-red-700 flex justify-center items-center py-3 cursor-pointer">
                     <button className=" text-white text-sm cursor-pointer ">
                       Know More
                     </button>
                 </div>
-                </Link>
+                </a>
+                {/* <Link to={`/${slug}`}>
+               
+                </Link> */}
               </div>
             </motion.div>
           );
