@@ -6,7 +6,7 @@ import {
   FaGraduationCap, FaClock, FaLaptop, FaUserGraduate, FaRupeeSign,
   FaCreditCard, FaChevronDown, FaChevronUp, FaStar
 } from "react-icons/fa";
-
+ import * as FaIcons from "react-icons/fa";
 import universities from "../assets/data/Universities.jsx"; // Make sure this file exports an array of university objects
 import UniversityContactForm from '../components/global/UniversityContactForm.jsx';
 
@@ -26,7 +26,7 @@ export default function University() {
 
   
   return (
-    <div className="min-h-screen bg-gray-50 pb-12 ">
+    <div className="min-h-screen overflow-hidden bg-gray-50 pb-12 ">
       <div className="">
         <UniversityCard university={university} />
         
@@ -48,13 +48,13 @@ const handleContactFormToggle = () => {
   }
   return (
   <div>
-   <div className="w-full bg-red-100 h-auto p-6 text-red-600">
+   <div className="w-full bg-red-100 h-auto p-6 text-red-600 ">
   {/* University Info Section */}
   <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
     
     {/* Text and Details */}
     <div className="space-y-4">
-      <h2 className="text-3xl font-bold">{university.universityName}</h2>
+      <h2 className="text-3xl font-bold">{university.universityName} - online</h2>
       <p className="text-base">
         {university.description}
       </p>
@@ -103,7 +103,31 @@ const handleContactFormToggle = () => {
     </div>
   </div>
 </div>
-
+<div>
+<h2>About {university.universityName} -online</h2>
+{university?.About.map((about)=>(
+  <p>{about}</p>
+))}
+<h2 className="text-xl font-semibold mb-4">Key Highlights of {university.universityName}</h2>
+<div className="overflow-x-auto">
+  <table className="min-w-full border border-gray-300">
+    <thead className="bg-red-700">
+      <tr>
+        <th className="text-left p-2 border border-red-900 text-white">Feature</th>
+        <th className="text-left p-2 border border-red-900 text-white">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      {university?.keyhighlights?.map((item, index) => (
+        <tr key={index} className="hover:bg-gray-50">
+          <td className="p-2 border border-gray-300 font-medium">{item.feature}</td>
+          <td className="p-2 border border-gray-300">{item.details}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+</div>
       <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -113,14 +137,14 @@ const handleContactFormToggle = () => {
       
       {/* University Header */}
       <div className=" flex  relative text-red-700 p-6">
-        <img src={university?.img} alt="" className=" md:h-56 w-full scale-110 md:scale-0 opacity-35"/>
+        <img src={university?.img} alt="" className=" md:h-56 w-full scale-110 md:scale-105 opacity-35"/>
         <div className=" absolute top-10 flex flex-col md:gap-10">
           <div className="flex items-center mb-4 md:mb-0">
             <div className="bg-white p-3 rounded-full mr-4 text-red-700">
               <FaUniversity size={28} />
             </div>
             <div>
-              <h2 className="text-2xl font-bold">{university.universityName}</h2>
+              <h2 className="text-2xl font-bold">{university.universityName} Online Courses With Updated Fees for 2025</h2>
               <div className="flex items-center mt-1">
                 <FaMapMarkerAlt className="mr-1" />
                 <span className="text-sm">{university.location}</span>
@@ -145,20 +169,7 @@ const handleContactFormToggle = () => {
         </div>
       </div>
 
-      {/* Approvals */}
-      <div className="px-6 py-4 border-b border-gray-100">
-        <div className="flex flex-wrap items-center">
-          <span className="font-medium text-gray-700 mr-2">Approvals:</span>
-          {university.approvals.map((approval, i) => (
-            <span 
-              key={i} 
-              className="bg-red-50 text-red-700 text-xs font-semibold px-2.5 py-0.5 rounded-md mr-2 mb-2"
-            >
-              {approval}
-            </span>
-          ))}
-        </div>
-      </div>
+ 
 
       {/* Programs */}
       <div className="px-6 py-4">
@@ -249,6 +260,208 @@ const handleContactFormToggle = () => {
           ))}
         </div>
       </div>
+<h2>
+  EMI Option Available At {university?.universityName}
+</h2>
+<p>{university?.EMIOptionAvailable}</p>
+<h2>Key Features of EMI Facility at {university?.universityName}</h2>
+<ul>
+  {university?.KeyFeaturesofEMI?.map((data , index)=>(
+    <li><span className="font-bold">• {data.title}: </span>{data.body}</li>
+  ))}
+</ul>
+<h2>Why Should You Choose {university?.universityName} online</h2>
+<table className="min-w-full table-auto border border-gray-200">
+  <thead>
+    <tr className="bg-blue-100 text-gray-800">
+      <th className="px-4 py-3 text-left font-semibold border border-gray-200">Feature</th>
+      <th className="px-4 py-3 text-left font-semibold border border-gray-200">Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    {university?.WhyShouldYouChoose?.map((data, index) => (
+      <tr key={index} className="even:bg-gray-50">
+        <td className="px-4 py-3 border border-gray-200 font-medium text-gray-900">{data?.feature}</td>
+        <td className="px-4 py-3 border border-gray-200 text-gray-700">{data?.detail}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+
+<h2>Benefits of Studying at {university?.universityName}</h2>
+<section className="py-8">
+      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
+        Benefits of {university.universityName}
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {university?.Benefits?.map((benefit, index) => {
+          const IconComponent = FaIcons[benefit.icon] || FaIcons.FaLaptop; // fallback icon
+          return (
+            <div
+              key={index}
+              className="p-6 border rounded-2xl shadow-sm hover:shadow-md transition bg-white"
+            >
+              <div className="flex items-start gap-4">
+                <div className="mt-1">
+                  <IconComponent className="text-2xl text-blue-600" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-sm text-gray-700 mt-2">{benefit.detail}</p>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+    <section className="py-8">
+  <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
+    How Are Exams Conducted at {university.universityName}
+  </h2>
+  <ul className="space-y-4 max-w-4xl mx-auto text-gray-700 text-base px-4">
+    {university?.HowareExamsconducted?.map((item, index) => (
+      <li key={index} className="leading-relaxed">
+        <span className="font-semibold">{item.title}:</span> {item.details}
+      </li>
+    ))}
+  </ul>
+</section>
+<section className="py-10 px-4 max-w-6xl mx-auto">
+  <h2 className="text-3xl font-bold text-center mb-8">Accreditations & Approvals</h2>
+  <div className="overflow-x-auto">
+    <table className="min-w-full bg-white rounded-2xl shadow-md">
+      <thead className="bg-gray-100">
+        <tr>
+          <th className="text-left text-sm font-semibold text-gray-700 px-6 py-4">Logo</th>
+          <th className="text-left text-sm font-semibold text-gray-700 px-6 py-4">Accreditation</th>
+          <th className="text-left text-sm font-semibold text-gray-700 px-6 py-4">About</th>
+        </tr>
+      </thead>
+      <tbody>
+        {university?.acreditationsApprovals?.map((item, index) => (
+          <tr key={index} className="border-b last:border-none">
+            <td className="px-6 py-4">
+              <img src={item.img} alt={item.AccreditationsApprovals} className="w-12 h-12 object-contain" />
+            </td>
+            <td className="px-6 py-4 font-medium text-gray-800">{item.AccreditationsApprovals}</td>
+            <td className="px-6 py-4 text-sm text-gray-600">{item.about}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>
+<section className="py-10 px-4 max-w-5xl mx-auto">
+  <h2 className="text-3xl font-bold text-center mb-10">Academic Approach</h2>
+
+  {/* Experiential Metrics */}
+  <div className="mb-10">
+    <h3 className="text-2xl font-semibold text-gray-800 mb-4">1. Experiential Metrics</h3>
+    <div className="space-y-4">
+      {university?.AcademicApproach?.[0]?.map((item, index) => (
+        <div key={index}>
+          <p className="font-medium text-gray-800">{item.subtitle}:</p>
+          <p className="text-sm text-gray-700">{item.detail}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  {/* Quantitative Metrics */}
+  <div>
+    <h3 className="text-2xl font-semibold text-gray-800 mb-4">2. Quantitative Metrics</h3>
+    <div className="space-y-4">
+      {university?.AcademicApproach?.[1]?.map((item, index) => (
+        <div key={index}>
+          <p className="font-medium text-gray-800">{item.subtitle}:</p>
+          <p className="text-sm text-gray-700">{item.detail}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section className="py-10 px-4 max-w-6xl mx-auto">
+  <h2 className="text-3xl font-bold text-center mb-8">Top Hiring Partners</h2>
+  <div className="overflow-x-auto">
+    <table className="min-w-full table-auto border border-gray-300">
+      <thead className="bg-gray-100">
+        <tr>
+          <th>Logo</th>
+          <th className="text-left px-4 py-2 border-b">Company</th>
+          <th className="text-left px-4 py-2 border-b">About</th>
+        </tr>
+      </thead>
+      <tbody>
+        {university?.Placement?.map((item, index) => (
+          <tr key={index} className="border-t">
+            <td className="px-4 py-3"><img src={item?.img} alt="" /></td>
+            <td className="px-4 py-3 font-medium text-gray-800">{item.company}</td>
+            <td className="px-4 py-3 text-gray-700">{item.about}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>
+<h2>
+  What More Than Just A Degree?
+</h2>
+<section className="py-10 px-4 max-w-6xl mx-auto">
+  <h2 className="text-3xl font-bold text-center mb-8">Why Choose an LPU Online Degree?</h2>
+  <div className="flex flex-col lg:flex-row items-center gap-10">
+    
+    {/* Left Side: Details and Points */}
+    <div className="flex-1">
+      <p className="text-gray-700 text-base mb-4">
+        {university?.Degree?.detail}
+      </p>
+      <ul className="list-disc list-inside space-y-2 text-gray-800 font-medium">
+        {university?.Degree?.points?.map((point, index) => (
+          <li key={index}>{point}</li>
+        ))}
+      </ul>
+    </div>
+
+    {/* Right Side: Degree Image */}
+    <div className="flex-1">
+      <img
+        src={university?.Degree?.img}
+        alt="Sample LPU Degree"
+        className="w-full max-w-md mx-auto rounded-xl shadow-lg object-contain"
+      />
+    </div>
+    
+  </div>
+</section>
+<section className="py-10 px-4 max-w-6xl mx-auto">
+  <h2 className="text-3xl font-bold text-center mb-6">How to Take Online Admission in {university?.universityName} Online ?</h2>
+  
+  {/* Header Description */}
+  <p className="text-center text-gray-700 mb-8 max-w-3xl mx-auto">
+    {university?.howtoapply?.[0]?.header}
+  </p>
+
+  {/* Steps */}
+  <div className="flex flex-wrap justify-center gap-6">
+    {university?.howtoapply?.slice(1).map((step, index) => (
+      <div
+        key={index}
+        className="flex flex-col items-center bg-white border border-gray-300 rounded-lg p-5 w-48 text-center shadow-sm"
+      >
+        <div className="flex items-center justify-center w-10 h-10 bg-indigo-600 text-white rounded-full mb-3 font-bold text-lg">
+          {index + 1}
+        </div>
+        <h3 className="font-semibold text-lg mb-1">{step.title}</h3>
+        <p className="text-gray-600 text-sm">{step.detail}</p>
+      </div>
+    ))}
+  </div>
+</section>
 
       {/* Features */}
       <div className="px-6 py-4 bg-gray-50">
@@ -280,7 +493,7 @@ const handleContactFormToggle = () => {
         )}
       </div>
 {contactFormVisible && (
-          <div className=" fixed top-0 md:h-[70vh] w-full bg-amber-950">
+          <div className=" fixed top-0 w-full bg-amber-950">
             <UniversityContactForm universityName={university.universityName} logoUrl={university.logo} onClose={handleContactFormToggle} />
           </div>
         )}

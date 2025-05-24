@@ -34,7 +34,7 @@ const UniversityContactForm = ({ universityName, logoUrl , onClose }) => {
             animate={{ opacity: 1, scale: 1 }}
             className="flex flex-col items-center justify-center p-8 h-full"
           >
-            <div className="w-16 h-16 rounded-full flex items-center justify-center mb-4">
+            <div className="w-16 h-16 rounded-full flex items-center justify-center mb-4 md:mb-1">
               <FiCheck className="text-white text-2xl" />
             </div>
             <h2 className="text-2xl font-bold text-gray-800">Thank You!</h2>
@@ -46,7 +46,7 @@ const UniversityContactForm = ({ universityName, logoUrl , onClose }) => {
           <>
             <div className="bg-gradient-to-r from-red-600 via-red-500 to-red-700 p-6 flex items-center justify-center flex-col">
               {logoUrl && (
-                <img src={logoUrl} alt={`${universityName} logo`} className="h-16 mb-4 rounded-xs" />
+                <img src={logoUrl} alt={`${universityName} logo`} className="h-16 mb-4 md:mb-1 rounded-xs" />
               )}
               <h2 className="text-xl font-bold text-white text-center">{universityName}</h2>
               <p className="text-sm text-teal-100 mt-2 text-center">
@@ -56,8 +56,8 @@ const UniversityContactForm = ({ universityName, logoUrl , onClose }) => {
             
             <div className="p-6">
               <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="mb-4">
-                  <label className="block text-gray-700 text-sm font-medium mb-1">Name</label>
+                <div className="mb-4 md:mb-1">
+                  <label className="block text-gray-700 text-sm ">Name</label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                       <FiUser className="text-gray-400" />
@@ -71,8 +71,8 @@ const UniversityContactForm = ({ universityName, logoUrl , onClose }) => {
                   {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
                 </div>
                 
-                <div className="mb-4">
-                  <label className="block text-gray-700 text-sm font-medium mb-1">Email</label>
+                <div className="mb-4 md:mb-1 ">
+                  <label className="block text-gray-700 text-sm ">Email</label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                       <FiMail className="text-gray-400" />
@@ -92,8 +92,8 @@ const UniversityContactForm = ({ universityName, logoUrl , onClose }) => {
                   {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
                 </div>
                 
-                <div className="mb-4">
-                  <label className="block text-gray-700 text-sm font-medium mb-1">Phone</label>
+                <div className="mb-4 md:mb-1">
+                  <label className="block text-gray-700 text-sm ">Phone</label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                       <FiPhone className="text-gray-400" />
@@ -113,8 +113,8 @@ const UniversityContactForm = ({ universityName, logoUrl , onClose }) => {
                   {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
                 </div>
                 
-                <div className="mb-6">
-                  <label className="block text-gray-700 text-sm font-medium mb-1">City</label>
+                <div className="mb-6 md:mb-1">
+                  <label className="block text-gray-700 text-sm ">City</label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                       <FiMapPin className="text-gray-400" />
@@ -128,7 +128,7 @@ const UniversityContactForm = ({ universityName, logoUrl , onClose }) => {
                   {errors.city && <p className="text-red-500 text-xs mt-1">{errors.city.message}</p>}
                 </div>
                 
-                <div className="mb-6">
+                <div className="mb-6 md:mb-1 ">
                   <label className="flex items-center">
                     <input
                       type="checkbox"
