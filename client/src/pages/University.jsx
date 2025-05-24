@@ -6,13 +6,11 @@ import {
   FaGraduationCap, FaClock, FaLaptop, FaUserGraduate, FaRupeeSign,
   FaCreditCard, FaChevronDown, FaChevronUp, FaStar
 } from "react-icons/fa";
- import * as FaIcons from "react-icons/fa";
+import * as FaIcons from "react-icons/fa";
 import universities from "../assets/data/Universities.jsx"; // Make sure this file exports an array of university objects
 import UniversityContactForm from '../components/global/UniversityContactForm.jsx';
 
-
 export default function University() {
-
   const { "university-name": universityNameParam } = useParams();
   const decodedName = decodeURIComponent(universityNameParam).toLowerCase();
 
@@ -21,496 +19,1109 @@ export default function University() {
   );
 
   if (!university) {
-    return <div className="text-center py-20 text-red-600 font-bold text-xl">University not found.</div>;
+    return (
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50 to-red-100"
+      >
+        <div className="text-center p-8 bg-white rounded-2xl shadow-xl border border-red-200">
+          <div className="text-red-600 text-6xl mb-4">
+            <FaUniversity />
+          </div>
+          <h1 className="text-2xl font-bold text-red-800 mb-2">University Not Found</h1>
+          <p className="text-red-600">The requested university could not be located.</p>
+        </div>
+      </motion.div>
+    );
   }
 
-  
   return (
-    <div className="min-h-screen overflow-hidden bg-gray-50 pb-12 ">
-      <div className="">
+    <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-red-50 pb-16">
+      <div className="relative">
         <UniversityCard university={university} />
-        
       </div>
     </div>
   );
 }
 
 function UniversityCard({ university }) {
-    const [contactFormVisible, setContactFormVisible] = useState(false);
-
+  const [contactFormVisible, setContactFormVisible] = useState(false);
   const [expandedProgram, setExpandedProgram] = useState(null);
 
   const toggleProgram = (index) => {
     setExpandedProgram(expandedProgram === index ? null : index);
   };
-const handleContactFormToggle = () => {
+
+  const handleContactFormToggle = () => {
     setContactFormVisible(!contactFormVisible);
-  }
+  };
+
   return (
-  <div>
-   <div className="w-full bg-red-100 h-auto p-6 text-red-600 ">
-  {/* University Info Section */}
-  <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-    
-    {/* Text and Details */}
-    <div className="space-y-4">
-      <h2 className="text-3xl font-bold">{university.universityName} - online</h2>
-      <p className="text-base">
-        {university.description}
-      </p>
+    <div className="relative">
+      {/* Hero Section with Floating Elements */}
+      <motion.div 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="relative w-full bg-gradient-to-r from-red-600 via-red-700 to-red-800 overflow-hidden"
+      >
+        {/* Floating Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-4 -left-4 w-24 h-24 bg-red-500 rounded-full opacity-20 animate-pulse"></div>
+          <div className="absolute top-1/2 -right-8 w-32 h-32 bg-red-400 rounded-full opacity-10 animate-pulse delay-1000"></div>
+          <div className="absolute bottom-4 left-1/3 w-16 h-16 bg-red-300 rounded-full opacity-15 animate-pulse delay-500"></div>
+        </div>
 
-      {/* Approvals Logos */}
-      <div className="flex gap-4">
-        {university?.regulatory.map((logo)=>(
-        <img src={logo} alt="" className="h-12" />
-        ))}
-        
-       
-      </div>
-
-      {/* Program Buttons */}
-      <div className="flex flex-wrap gap-2">
-        {university?.programNames?.map((course) => (
-          <span
-            key={course}
-            className="bg-white text-black px-4 py-1 rounded-full text-sm font-medium"
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center p-8 relative z-10">
+          {/* Text and Details */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="space-y-6"
           >
-            {course}
-          </span>
-        ))}
-      </div>
-
-      {/* CTA Buttons */}
-      <div className="flex gap-4 mt-4 flex-wrap">
-        <button onClick={handleContactFormToggle} className="bg-orange-500 px-5 py-2 rounded text-white font-semibold hover:bg-orange-600">
-          Download Brochure
-        </button>
-        <button onClick={handleContactFormToggle} className="bg-blue-600 px-5 py-2 rounded text-white font-semibold hover:bg-blue-700">
-          Get Help
-        </button>
-        <Link  to={'/compare-colleges'} className="bg-green-600 px-5 py-2 rounded text-white font-semibold hover:bg-green-700 cursor-pointer">
-          Add to Compare
-        </Link>
-      </div>
-    </div>
-
-    {/* Image & Rating */}
-    <div className="relative w-full">
-      <img src={university.img} alt="LPU Campus" className="w-full rounded" />
-      <div className="absolute top-4 right-4 bg-white px-2 py-1 rounded flex items-center gap-1 text-yellow-500 text-lg">
-        ★ ★ ★ ★ ☆
-      </div>
-    </div>
-  </div>
-</div>
-<div>
-<h2>About {university.universityName} -online</h2>
-{university?.About.map((about)=>(
-  <p>{about}</p>
-))}
-<h2 className="text-xl font-semibold mb-4">Key Highlights of {university.universityName}</h2>
-<div className="overflow-x-auto">
-  <table className="min-w-full border border-gray-300">
-    <thead className="bg-red-700">
-      <tr>
-        <th className="text-left p-2 border border-red-900 text-white">Feature</th>
-        <th className="text-left p-2 border border-red-900 text-white">Details</th>
-      </tr>
-    </thead>
-    <tbody>
-      {university?.keyhighlights?.map((item, index) => (
-        <tr key={index} className="hover:bg-gray-50">
-          <td className="p-2 border border-gray-300 font-medium">{item.feature}</td>
-          <td className="p-2 border border-gray-300">{item.details}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
-</div>
-      <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className=" relative bg-white rounded-xl shadow-xl "
-    >
-      
-      {/* University Header */}
-      <div className=" flex  relative text-red-700 p-6">
-        <img src={university?.img} alt="" className=" md:h-56 w-full scale-110 md:scale-105 opacity-35"/>
-        <div className=" absolute top-10 flex flex-col md:gap-10">
-          <div className="flex items-center mb-4 md:mb-0">
-            <div className="bg-white p-3 rounded-full mr-4 text-red-700">
-              <FaUniversity size={28} />
+            <div className="space-y-4">
+              <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-4xl lg:text-5xl font-bold text-white leading-tight"
+              >
+                {university.universityName}
+                <span className="block text-2xl lg:text-3xl text-red-200 font-medium mt-2">
+                  Online Education
+                </span>
+              </motion.h2>
+              
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-lg text-red-50 leading-relaxed max-w-2xl"
+              >
+                {university.description}
+              </motion.p>
             </div>
-            <div>
-              <h2 className="text-2xl font-bold">{university.universityName} Online Courses With Updated Fees for 2025</h2>
-              <div className="flex items-center mt-1">
-                <FaMapMarkerAlt className="mr-1" />
-                <span className="text-sm">{university.location}</span>
-              </div>
+
+            {/* Regulatory Logos with Animation */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="flex flex-wrap gap-4"
+            >
+              {university?.regulatory.map((logo, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ scale: 1.1, rotate: 2 }}
+                  className="bg-white bg-opacity-20 backdrop-blur-sm p-3 rounded-xl border border-red-300 border-opacity-30"
+                >
+                  <img src={logo} alt="" className="h-12 w-auto object-contain filter brightness-0 invert" />
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* Program Pills */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="flex flex-wrap gap-3"
+            >
+              {university?.programNames?.map((course, index) => (
+                <motion.span
+                  key={course}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, delay: 0.7 + index * 0.1 }}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  className="bg-white bg-opacity-95 text-red-700 px-4 py-2 rounded-full text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-white"
+                >
+                  {course}
+                </motion.span>
+              ))}
+            </motion.div>
+
+            {/* CTA Buttons with Enhanced Styling */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="flex flex-wrap gap-4 pt-4"
+            >
+              <motion.button 
+                onClick={handleContactFormToggle}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="bg-orange-500 hover:bg-orange-600 px-6 py-3 rounded-xl text-white font-bold shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-orange-400 hover:border-orange-300"
+              >
+                📚 Download Brochure
+              </motion.button>
+              
+              <motion.button 
+                onClick={handleContactFormToggle}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-xl text-white font-bold shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-blue-500 hover:border-blue-400"
+              >
+                💬 Get Help
+              </motion.button>
+              
+              <Link 
+                to={'/compare-colleges'}
+                className="inline-block"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-xl text-white font-bold shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-green-500 hover:border-green-400 cursor-pointer"
+                >
+                  ⚖️ Add to Compare
+                </motion.div>
+              </Link>
+            </motion.div>
+          </motion.div>
+
+          {/* Image & Rating with Enhanced Styling */}
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="relative w-full"
+          >
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+              <img 
+                src={university.img} 
+                alt="University Campus" 
+                className="w-full h-64 lg:h-80 object-cover transform hover:scale-105 transition-transform duration-700" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-red-900 via-transparent to-transparent opacity-30"></div>
+              
+              {/* Floating Rating Badge */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 1 }}
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                className="absolute top-6 right-6 bg-white bg-opacity-95 backdrop-blur-sm px-4 py-2 rounded-full flex items-center gap-2 shadow-xl border border-yellow-200"
+              >
+                <div className="flex text-yellow-500 text-lg">
+                  ★ ★ ★ ★ ☆
+                </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
+        </div>
+      </motion.div>
+
+      {/* About Section with Enhanced Styling */}
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="px-6 lg:px-8 py-12 bg-gradient-to-br from-red-50 to-white"
+      >
+        <div className="max-w-7xl mx-auto">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-4xl font-bold text-red-800 mb-8 text-center"
+          >
+            About {university.universityName} Online
+          </motion.h2>
           
-          <div className="flex flex-wrap gap-3 mt-4 md:mt-0 text-white">
-            <div className="flex items-center bg-red-900 bg-opacity-40 rounded-full px-3 py-1">
-              <FaCalendarAlt className="mr-1" />
-              <span className="text-sm">Est. {university.established}</span>
-            </div>
-            <div className="flex items-center bg-red-900 bg-opacity-40 rounded-full px-3 py-1">
-              <FaMedal className="mr-1" />
-              <span className="text-sm">{university.accreditation}</span>
-            </div>
-            <div className="flex items-center bg-red-900 bg-opacity-40 rounded-full px-3 py-1">
-              <FaStar className="mr-1" />
-              <span className="text-sm">{university.features.studentRating}</span>
-            </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="space-y-6"
+            >
+              {university?.About?.map((about, index) => (
+                <motion.p 
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
+                  className="text-red-700 leading-relaxed text-lg bg-white p-6 rounded-xl shadow-lg border border-red-100 hover:shadow-xl transition-shadow duration-300"
+                >
+                  {about}
+                </motion.p>
+              ))}
+            </motion.div>
+
+            {/* Key Highlights Table with Enhanced Design */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              <h3 className="text-2xl font-bold text-red-800 mb-6">Key Highlights</h3>
+              <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-red-100">
+                <div className="overflow-x-auto">
+                  <table className="min-w-full">
+                    <thead className="bg-gradient-to-r from-red-700 to-red-800">
+                      <tr>
+                        <th className="text-left p-4 text-white text-sm font-bold">Feature</th>
+                        <th className="text-left p-4 text-white text-sm font-bold">Details</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {university?.keyhighlights?.map((item, index) => (
+                        <motion.tr 
+                          key={index}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.4, delay: 0.7 + index * 0.1 }}
+                          className="border-b border-red-100 hover:bg-red-50 transition-colors duration-300"
+                        >
+                          <td className="p-4 font-semibold text-red-900 text-sm">
+                            {item.feature}
+                          </td>
+                          <td className="p-4 text-red-700 text-sm">
+                            {item.details}
+                          </td>
+                        </motion.tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
- 
-
-      {/* Programs */}
-      <div className="px-6 py-4">
-        <h3 className="font-bold text-lg text-gray-800 mb-4 flex items-center">
-          <FaGraduationCap className="mr-2 text-red-600" />
-          Programs Offered
-        </h3>
-
-        <div className="space-y-4">
-          {university.programsOffered.map((program, index) => (
-            <div key={index} className="border border-gray-200 rounded-lg overflow-hidden">
-              <motion.button
-                onClick={() => toggleProgram(index)}
-                className="w-full flex items-center justify-between p-4 text-left focus:outline-none"
-                whileHover={{ backgroundColor: "rgba(2, 94, 104, 0.05)" }}
+      {/* Main Content Card */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+        className="max-w-7xl mx-auto bg-white rounded-3xl shadow-2xl border border-red-100 overflow-hidden my-8 mx-4 lg:mx-8"
+      >
+        {/* University Header with Parallax Effect */}
+        <div className="relative text-red-700 bg-gradient-to-br from-red-50 to-red-100 overflow-hidden">
+          <motion.img
+            src={university?.img}
+            alt={`${university?.universityName} banner`}
+            className="md:h-64 w-full object-cover opacity-20"
+            initial={{ scale: 1.1 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 1.2 }}
+          />
+          
+          <div className="absolute inset-0 bg-gradient-to-r from-red-600 via-red-700 to-red-800 opacity-80"></div>
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="absolute inset-0 flex flex-col justify-center px-6 md:px-12"
+          >
+            <div className="flex items-center mb-6">
+              <motion.div 
+                whileHover={{ rotate: 360, scale: 1.1 }}
+                transition={{ duration: 0.6 }}
+                className="bg-white p-4 rounded-full mr-6 text-red-700 shadow-xl"
               >
-                <div className="flex items-center">
-                  <div className="bg-red-100 p-2 rounded-full mr-3">
-                    <FaGraduationCap className="text-red-700" size={16} />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800">{program.degree}</h4>
-                    <div className="flex flex-wrap mt-1 gap-3">
-                      <div className="flex items-center text-xs text-gray-600">
-                        <FaClock className="mr-1" />
-                        {program.duration}
-                      </div>
-                      <div className="flex items-center text-xs text-gray-600">
-                        <FaLaptop className="mr-1" />
-                        {program.mode}
-                      </div>
-                      <div className="flex items-center text-xs text-gray-600">
-                        <FaRupeeSign className="mr-1" />
-                        {program.semesterFee}/semester
-                      </div>
-                      {program.emiAvailable && (
-                        <div className="flex items-center text-xs text-green-600">
-                          <FaCreditCard className="mr-1" />
-                          EMI Available
+                <FaUniversity size={32} />
+              </motion.div>
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold text-white drop-shadow-lg mb-2">
+                  {university.universityName} Online Courses
+                </h2>
+                <p className="text-xl text-red-100 font-medium">Updated Fees for 2025</p>
+                <div className="flex items-center mt-2 text-red-100">
+                  <FaMapMarkerAlt className="mr-2" />
+                  <span className="text-base">{university.location}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-4 text-sm font-semibold">
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="flex items-center bg-white bg-opacity-20 backdrop-blur-sm rounded-full px-4 py-2 border border-white border-opacity-30"
+              >
+                <FaCalendarAlt className="mr-2" />
+                Est. {university.established}
+              </motion.div>
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="flex items-center bg-white bg-opacity-20 backdrop-blur-sm rounded-full px-4 py-2 border border-white border-opacity-30"
+              >
+                <FaMedal className="mr-2" />
+                {university.accreditation}
+              </motion.div>
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="flex items-center bg-white bg-opacity-20 backdrop-blur-sm rounded-full px-4 py-2 border border-white border-opacity-30"
+              >
+                <FaStar className="mr-2" />
+                {university.features.studentRating}
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Programs Offered with Enhanced Cards */}
+        <div className="px-6 md:px-12 py-12 bg-gradient-to-br from-white to-red-50">
+          <motion.h3 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="font-bold text-3xl text-red-800 mb-8 flex items-center justify-center"
+          >
+            <motion.div
+              whileHover={{ rotate: 15 }}
+              className="mr-3 text-red-600"
+            >
+              <FaGraduationCap />
+            </motion.div>
+            Programs Offered
+          </motion.h3>
+
+          <div className="space-y-6">
+            {university.programsOffered.map((program, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-white border-2 border-red-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+              >
+                <motion.button
+                  onClick={() => toggleProgram(index)}
+                  className="w-full flex items-center justify-between p-6 text-left focus:outline-none hover:bg-red-50 transition-colors duration-300"
+                  whileHover={{ backgroundColor: "rgba(254, 242, 242, 0.8)" }}
+                >
+                  <div className="flex items-center flex-1">
+                    <motion.div 
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      className="bg-gradient-to-br from-red-100 to-red-200 p-3 rounded-xl mr-4 shadow-md"
+                    >
+                      <FaGraduationCap className="text-red-700" size={20} />
+                    </motion.div>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-xl text-red-800 mb-2">{program.degree}</h4>
+                      <div className="flex flex-wrap gap-4">
+                        <div className="flex items-center text-sm text-red-600 bg-red-50 px-3 py-1 rounded-full">
+                          <FaClock className="mr-2" />
+                          {program.duration}
                         </div>
-                      )}
+                        <div className="flex items-center text-sm text-red-600 bg-red-50 px-3 py-1 rounded-full">
+                          <FaLaptop className="mr-2" />
+                          {program.mode}
+                        </div>
+                        <div className="flex items-center text-sm text-red-600 bg-red-50 px-3 py-1 rounded-full">
+                          <FaRupeeSign className="mr-2" />
+                          {program.semesterFee}/semester
+                        </div>
+                        {program.emiAvailable && (
+                          <div className="flex items-center text-sm text-green-600 font-semibold bg-green-50 px-3 py-1 rounded-full border border-green-200">
+                            <FaCreditCard className="mr-2" />
+                            EMI Available
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-                {expandedProgram === index ? (
-                  <FaChevronUp className="text-red-600" />
-                ) : (
-                  <FaChevronDown className="text-red-600" />
-                )}
-              </motion.button>
-
-              <AnimatePresence>
-                {expandedProgram === index && (
                   <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
+                    animate={{ rotate: expandedProgram === index ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
+                    className="text-red-600 ml-4"
                   >
-                    <div className="px-4 pb-4">
-                      <div className="p-4 bg-gray-50 rounded-lg">
-                        <div className="mb-3">
-                          <span className="font-medium text-gray-700">Eligibility:</span>
-                          <p className="text-sm text-gray-600 mt-1">{program.eligibility}</p>
-                        </div>
+                    <FaChevronDown size={20} />
+                  </motion.div>
+                </motion.button>
 
-                        <div>
-                          <span className="font-medium text-gray-700">Specializations:</span>
-                          <div className="mt-2 flex flex-wrap gap-2">
-                            {program.specializations.map((spec, i) => (
-                              <span
-                                key={i}
-                                className="bg-white border border-red-200 text-red-700 text-xs px-2 py-1 rounded-full flex items-center"
-                              >
-                                <FaCheckCircle className="mr-1 text-red-500" size={10} />
-                                {spec}
-                              </span>
-                            ))}
+                <AnimatePresence>
+                  {expandedProgram === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-6 pb-6">
+                        <div className="p-6 bg-gradient-to-br from-red-50 to-red-100 rounded-xl border border-red-200">
+                          <div className="mb-6">
+                            <span className="font-bold text-red-800 text-lg">Eligibility:</span>
+                            <p className="text-red-700 mt-2 leading-relaxed">{program.eligibility}</p>
+                          </div>
+
+                          <div>
+                            <span className="font-bold text-red-800 text-lg">Specializations:</span>
+                            <div className="mt-4 flex flex-wrap gap-3">
+                              {program.specializations.map((spec, i) => (
+                                <motion.span
+                                  key={i}
+                                  initial={{ opacity: 0, scale: 0.8 }}
+                                  animate={{ opacity: 1, scale: 1 }}
+                                  transition={{ duration: 0.3, delay: i * 0.05 }}
+                                  whileHover={{ scale: 1.05, y: -2 }}
+                                  className="bg-white border-2 border-red-200 text-red-700 text-sm px-4 py-2 rounded-full flex items-center shadow-md hover:shadow-lg transition-all duration-300"
+                                >
+                                  <FaCheckCircle className="mr-2 text-red-500" size={12} />
+                                  {spec}
+                                </motion.span>
+                              ))}
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </div>
-<h2>
-  EMI Option Available At {university?.universityName}
-</h2>
-<p>{university?.EMIOptionAvailable}</p>
-<h2>Key Features of EMI Facility at {university?.universityName}</h2>
-<ul>
-  {university?.KeyFeaturesofEMI?.map((data , index)=>(
-    <li><span className="font-bold">• {data.title}: </span>{data.body}</li>
-  ))}
-</ul>
-<h2>Why Should You Choose {university?.universityName} online</h2>
-<table className="min-w-full table-auto border border-gray-200">
-  <thead>
-    <tr className="bg-blue-100 text-gray-800">
-      <th className="px-4 py-3 text-left font-semibold border border-gray-200">Feature</th>
-      <th className="px-4 py-3 text-left font-semibold border border-gray-200">Details</th>
-    </tr>
-  </thead>
-  <tbody>
-    {university?.WhyShouldYouChoose?.map((data, index) => (
-      <tr key={index} className="even:bg-gray-50">
-        <td className="px-4 py-3 border border-gray-200 font-medium text-gray-900">{data?.feature}</td>
-        <td className="px-4 py-3 border border-gray-200 text-gray-700">{data?.detail}</td>
-      </tr>
-    ))}
-  </tbody>
-</table>
 
-
-<h2>Benefits of Studying at {university?.universityName}</h2>
-<section className="py-8">
-      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
-        Benefits of {university.universityName}
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {university?.Benefits?.map((benefit, index) => {
-          const IconComponent = FaIcons[benefit.icon] || FaIcons.FaLaptop; // fallback icon
-          return (
-            <div
-              key={index}
-              className="p-6 border rounded-2xl shadow-sm hover:shadow-md transition bg-white"
+        {/* EMI Section with Enhanced Design */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="px-6 md:px-12 py-12 bg-gradient-to-br from-red-50 to-white"
+        >
+          <div className="max-w-4xl mx-auto">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-3xl font-bold text-red-800 mb-6 text-center"
             >
-              <div className="flex items-start gap-4">
-                <div className="mt-1">
-                  <IconComponent className="text-2xl text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-sm text-gray-700 mt-2">{benefit.detail}</p>
+              💳 EMI Available at {university?.universityName}
+            </motion.h2>
+            
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-red-700 leading-relaxed mb-8 text-lg text-center bg-white p-6 rounded-xl shadow-lg"
+            >
+              {university?.EMIOptionAvailable}
+            </motion.p>
+
+            <motion.h3 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-2xl font-bold text-red-800 mb-6 text-center"
+            >
+              🌟 Key Features of EMI Facility
+            </motion.h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {university?.KeyFeaturesofEMI?.map((data, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
+                  whileHover={{ scale: 1.02, y: -5 }}
+                  className="bg-white p-6 rounded-xl shadow-lg border border-red-100 hover:shadow-xl transition-all duration-300"
+                >
+                  <h4 className="font-bold text-red-900 text-lg mb-2">{data.title}:</h4>
+                  <p className="text-red-700 leading-relaxed">{data.body}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Why Choose Section with Enhanced Table */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="px-6 md:px-12 py-12 bg-white"
+        >
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl font-bold text-red-800 mb-8 text-center"
+          >
+            ✨ Why Should You Choose {university?.universityName} Online
+          </motion.h2>
+          
+          <div className="overflow-hidden rounded-2xl shadow-2xl border border-red-200">
+            <div className="overflow-x-auto">
+              <table className="min-w-full">
+                <thead className="bg-gradient-to-r from-red-600 to-red-700">
+                  <tr>
+                    <th className="px-6 py-4 text-left font-bold text-white text-lg">
+                      Feature
+                    </th>
+                    <th className="px-6 py-4 text-left font-bold text-white text-lg">
+                      Details
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white">
+                  {university?.WhyShouldYouChoose?.map((data, index) => (
+                    <motion.tr 
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      className="border-b border-red-100 hover:bg-red-50 transition-colors duration-300"
+                    >
+                      <td className="px-6 py-4 font-semibold text-red-900 text-base">
+                        {data?.feature}
+                      </td>
+                      <td className="px-6 py-4 text-red-700 leading-relaxed">
+                        {data?.detail}
+                      </td>
+                    </motion.tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Benefits Section with Creative Cards */}
+        <motion.section 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.0 }}
+          className="px-6 md:px-12 py-12 bg-gradient-to-br from-red-50 to-white"
+        >
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl font-bold mb-10 text-center text-red-800"
+          >
+            🎯 Benefits of {university.universityName}
+          </motion.h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {university?.Benefits?.map((benefit, index) => {
+              const IconComponent = FaIcons[benefit.icon] || FaIcons.FaLaptop; // fallback icon
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    y: -10,
+                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+                  }}
+                  className="group p-8 bg-white border-2 border-red-100 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:border-red-300"
+                >
+                  <div className="flex items-start gap-6">
+                    <motion.div 
+                      whileHover={{ rotate: 360, scale: 1.2 }}
+                      transition={{ duration: 0.6 }}
+                      className="mt-1 p-4 bg-gradient-to-br from-red-100 to-red-200 rounded-xl shadow-md group-hover:shadow-lg transition-shadow duration-300"
+                    >
+                      <IconComponent className="text-3xl text-red-600" />
+                    </motion.div>
+                    <div>
+                      <h3 className="text-xl font-bold text-red-800 mb-3 group-hover:text-red-900 transition-colors duration-300">
+                        {benefit.title}
+                      </h3>
+                      <p className="text-red-700 leading-relaxed group-hover:text-red-800 transition-colors duration-300">
+                        {benefit.detail}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </motion.section>
+
+        {/* Exams Section */}
+        <motion.section 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
+          className="px-6 md:px-12 py-12 bg-white"
+        >
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl font-bold mb-10 text-center text-red-800"
+          >
+            📝 How Are Exams Conducted at {university.universityName}
+          </motion.h2>
+          
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {university?.HowareExamsconducted?.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.02, y: -5 }}
+                  className="bg-gradient-to-br from-red-50 to-white p-6 rounded-xl shadow-lg border border-red-100 hover:shadow-xl transition-all duration-300"
+                >
+                  <h3 className="font-bold text-red-800 text-lg mb-2">{item.title}:</h3>
+                  <p className="text-red-700 leading-relaxed">{item.details}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Accreditations Section */}
+        <motion.section 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.4 }}
+          className="px-6 md:px-12 py-12 bg-gradient-to-br from-red-50 to-white"
+        >
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl font-bold text-center mb-12 text-red-800"
+          >
+            🏆 Accreditations & Approvals
+          </motion.h2>
+          
+          <div className="overflow-hidden rounded-2xl shadow-2xl border border-red-200">
+            <div className="overflow-x-auto">
+              <table className="min-w-full bg-white">
+                <thead className="bg-gradient-to-r from-red-600 to-red-700">
+                  <tr>
+                    <th className="text-left text-lg font-bold text-white px-8 py-6">Logo</th>
+                    <th className="text-left text-lg font-bold text-white px-8 py-6">Accreditation</th>
+                    <th className="text-left text-lg font-bold text-white px-8 py-6">About</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {university?.acreditationsApprovals?.map((item, index) => (
+                    <motion.tr 
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      className="border-b border-red-100 hover:bg-red-50 transition-colors duration-300"
+                    >
+                      <td className="px-8 py-6">
+                        <motion.div
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                          className="w-16 h-16 bg-red-50 rounded-xl border-2 border-red-200 flex items-center justify-center shadow-md"
+                        >
+                          <img
+                            src={item.img}
+                            alt={item.AccreditationsApprovals}
+                            className="w-12 h-12 object-contain"
+                          />
+                        </motion.div>
+                      </td>
+                      <td className="px-8 py-6 font-bold text-red-800 text-lg">{item.AccreditationsApprovals}</td>
+                      <td className="px-8 py-6 text-red-700 leading-relaxed">{item.about}</td>
+                    </motion.tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Academic Approach Section */}
+        <motion.section 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.6 }}
+          className="px-6 md:px-12 py-12 bg-white"
+        >
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl font-bold text-center mb-12 text-red-800"
+          >
+            🎓 Academic Approach
+          </motion.h2>
+
+          <div className="max-w-6xl mx-auto space-y-12">
+            {/* Experiential Metrics */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-gradient-to-br from-red-50 to-white p-8 rounded-2xl shadow-xl border border-red-100"
+            >
+              <h3 className="text-3xl font-bold text-red-700 mb-8 flex items-center">
+                <span className="text-4xl mr-4">📊</span>
+                1. Experiential Metrics
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {university?.AcademicApproach?.[0]?.map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+                    whileHover={{ scale: 1.02, y: -5 }}
+                    className="bg-white p-6 rounded-xl shadow-lg border border-red-100 hover:shadow-xl transition-all duration-300"
+                  >
+                    <h4 className="font-bold text-red-800 text-lg mb-3">{item.subtitle}:</h4>
+                    <p className="text-red-700 leading-relaxed">{item.detail}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Quantitative Metrics */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="bg-gradient-to-br from-red-50 to-white p-8 rounded-2xl shadow-xl border border-red-100"
+            >
+              <h3 className="text-3xl font-bold text-red-700 mb-8 flex items-center">
+                <span className="text-4xl mr-4">📈</span>
+                2. Quantitative Metrics
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {university?.AcademicApproach?.[1]?.map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
+                    whileHover={{ scale: 1.02, y: -5 }}
+                    className="bg-white p-6 rounded-xl shadow-lg border border-red-100 hover:shadow-xl transition-all duration-300"
+                  >
+                    <h4 className="font-bold text-red-800 text-lg mb-3">{item.subtitle}:</h4>
+                    <p className="text-red-700 leading-relaxed">{item.detail}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </motion.section>
+
+        {/* Top Hiring Partners */}
+        <motion.section 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.8 }}
+          className="px-6 md:px-12 py-12 bg-gradient-to-br from-red-50 to-white"
+        >
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl font-bold text-center mb-12 text-red-800 flex justify-center items-center gap-4"
+          >
+            <motion.div
+              whileHover={{ rotate: 15, scale: 1.1 }}
+              className="text-red-600"
+            >
+              <FaUserGraduate />
+            </motion.div>
+            Top Hiring Partners
+          </motion.h2>
+          
+          <div className="overflow-hidden rounded-2xl shadow-2xl border border-red-200">
+            <div className="overflow-x-auto">
+              <table className="min-w-full bg-white">
+                <thead className="bg-gradient-to-r from-red-600 to-red-700">
+                  <tr>
+                    <th className="px-8 py-6 text-left text-lg font-bold text-white">Logo</th>
+                    <th className="px-8 py-6 text-left text-lg font-bold text-white">Company</th>
+                    <th className="px-8 py-6 text-left text-lg font-bold text-white">About</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {university?.Placement?.map((item, index) => (
+                    <motion.tr 
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      className="border-b border-red-100 hover:bg-red-50 transition-colors duration-300"
+                    >
+                      <td className="px-8 py-6">
+                        <motion.div
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                          className="w-16 h-16 bg-red-50 rounded-xl border-2 border-red-200 flex items-center justify-center shadow-md"
+                        >
+                          <img 
+                            src={item?.img} 
+                            alt={item?.company} 
+                            className="w-12 h-12 object-contain" 
+                          />
+                        </motion.div>
+                      </td>
+                      <td className="px-8 py-6 font-bold text-red-800 text-lg">{item.company}</td>
+                      <td className="px-8 py-6 text-red-700 leading-relaxed">{item.about}</td>
+                    </motion.tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Degree Section */}
+        <motion.section 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 2.0 }}
+          className="px-6 md:px-12 py-12 bg-white"
+        >
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl font-bold text-center mb-12 text-red-800"
+          >
+            🎓 Why Choose an LPU Online Degree?
+          </motion.h2>
+          
+          <div className="flex flex-col lg:flex-row items-center gap-12 max-w-6xl mx-auto">
+            {/* Left Side: Details and Points */}
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex-1 space-y-6"
+            >
+              <div className="bg-gradient-to-br from-red-50 to-white p-8 rounded-2xl shadow-xl border border-red-100">
+                <p className="text-red-700 text-lg mb-6 leading-relaxed">
+                  {university?.Degree?.detail}
+                </p>
+                <div className="space-y-3">
+                  {university?.Degree?.points?.map((point, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
+                      whileHover={{ x: 10 }}
+                      className="flex items-center bg-white p-4 rounded-xl shadow-md border border-red-100 hover:shadow-lg transition-all duration-300"
+                    >
+                      <div className="w-3 h-3 bg-red-600 rounded-full mr-4 flex-shrink-0"></div>
+                      <span className="text-red-800 font-medium">{point}</span>
+                    </motion.div>
+                  ))}
                 </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
-    </section>
-    <section className="py-8">
-  <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
-    How Are Exams Conducted at {university.universityName}
-  </h2>
-  <ul className="space-y-4 max-w-4xl mx-auto text-gray-700 text-base px-4">
-    {university?.HowareExamsconducted?.map((item, index) => (
-      <li key={index} className="leading-relaxed">
-        <span className="font-semibold">{item.title}:</span> {item.details}
-      </li>
-    ))}
-  </ul>
-</section>
-<section className="py-10 px-4 max-w-6xl mx-auto">
-  <h2 className="text-3xl font-bold text-center mb-8">Accreditations & Approvals</h2>
-  <div className="overflow-x-auto">
-    <table className="min-w-full bg-white rounded-2xl shadow-md">
-      <thead className="bg-gray-100">
-        <tr>
-          <th className="text-left text-sm font-semibold text-gray-700 px-6 py-4">Logo</th>
-          <th className="text-left text-sm font-semibold text-gray-700 px-6 py-4">Accreditation</th>
-          <th className="text-left text-sm font-semibold text-gray-700 px-6 py-4">About</th>
-        </tr>
-      </thead>
-      <tbody>
-        {university?.acreditationsApprovals?.map((item, index) => (
-          <tr key={index} className="border-b last:border-none">
-            <td className="px-6 py-4">
-              <img src={item.img} alt={item.AccreditationsApprovals} className="w-12 h-12 object-contain" />
-            </td>
-            <td className="px-6 py-4 font-medium text-gray-800">{item.AccreditationsApprovals}</td>
-            <td className="px-6 py-4 text-sm text-gray-600">{item.about}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-</section>
-<section className="py-10 px-4 max-w-5xl mx-auto">
-  <h2 className="text-3xl font-bold text-center mb-10">Academic Approach</h2>
+            </motion.div>
 
-  {/* Experiential Metrics */}
-  <div className="mb-10">
-    <h3 className="text-2xl font-semibold text-gray-800 mb-4">1. Experiential Metrics</h3>
-    <div className="space-y-4">
-      {university?.AcademicApproach?.[0]?.map((item, index) => (
-        <div key={index}>
-          <p className="font-medium text-gray-800">{item.subtitle}:</p>
-          <p className="text-sm text-gray-700">{item.detail}</p>
-        </div>
-      ))}
-    </div>
-  </div>
+            {/* Right Side: Degree Image */}
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="flex-1"
+            >
+              <motion.div
+                whileHover={{ scale: 1.05, rotate: 2 }}
+                className="relative"
+              >
+                <img
+                  src={university?.Degree?.img}
+                  alt="Sample LPU Degree"
+                  className="w-full max-w-md mx-auto rounded-2xl shadow-2xl border-4 border-red-200 object-contain"
+                />
+                <div className="absolute -inset-4 bg-gradient-to-r from-red-200 to-red-300 rounded-2xl opacity-20 blur-xl"></div>
+              </motion.div>
+            </motion.div>
+          </div>
+        </motion.section>
 
-  {/* Quantitative Metrics */}
-  <div>
-    <h3 className="text-2xl font-semibold text-gray-800 mb-4">2. Quantitative Metrics</h3>
-    <div className="space-y-4">
-      {university?.AcademicApproach?.[1]?.map((item, index) => (
-        <div key={index}>
-          <p className="font-medium text-gray-800">{item.subtitle}:</p>
-          <p className="text-sm text-gray-700">{item.detail}</p>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
+        {/* How to Apply Section */}
+        <motion.section 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 2.2 }}
+          className="px-6 md:px-12 py-12 bg-gradient-to-br from-red-50 to-white"
+        >
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl font-bold text-center mb-8 text-red-800"
+          >
+            📋 How to Take Online Admission in {university?.universityName} Online?
+          </motion.h2>
 
-<section className="py-10 px-4 max-w-6xl mx-auto">
-  <h2 className="text-3xl font-bold text-center mb-8">Top Hiring Partners</h2>
-  <div className="overflow-x-auto">
-    <table className="min-w-full table-auto border border-gray-300">
-      <thead className="bg-gray-100">
-        <tr>
-          <th>Logo</th>
-          <th className="text-left px-4 py-2 border-b">Company</th>
-          <th className="text-left px-4 py-2 border-b">About</th>
-        </tr>
-      </thead>
-      <tbody>
-        {university?.Placement?.map((item, index) => (
-          <tr key={index} className="border-t">
-            <td className="px-4 py-3"><img src={item?.img} alt="" /></td>
-            <td className="px-4 py-3 font-medium text-gray-800">{item.company}</td>
-            <td className="px-4 py-3 text-gray-700">{item.about}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-</section>
-<h2>
-  What More Than Just A Degree?
-</h2>
-<section className="py-10 px-4 max-w-6xl mx-auto">
-  <h2 className="text-3xl font-bold text-center mb-8">Why Choose an LPU Online Degree?</h2>
-  <div className="flex flex-col lg:flex-row items-center gap-10">
-    
-    {/* Left Side: Details and Points */}
-    <div className="flex-1">
-      <p className="text-gray-700 text-base mb-4">
-        {university?.Degree?.detail}
-      </p>
-      <ul className="list-disc list-inside space-y-2 text-gray-800 font-medium">
-        {university?.Degree?.points?.map((point, index) => (
-          <li key={index}>{point}</li>
-        ))}
-      </ul>
-    </div>
+          {/* Header Description */}
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-center text-red-700 mb-12 max-w-4xl mx-auto text-lg leading-relaxed bg-white p-6 rounded-xl shadow-lg"
+          >
+            {university?.howtoapply?.[0]?.header}
+          </motion.p>
 
-    {/* Right Side: Degree Image */}
-    <div className="flex-1">
-      <img
-        src={university?.Degree?.img}
-        alt="Sample LPU Degree"
-        className="w-full max-w-md mx-auto rounded-xl shadow-lg object-contain"
-      />
-    </div>
-    
-  </div>
-</section>
-<section className="py-10 px-4 max-w-6xl mx-auto">
-  <h2 className="text-3xl font-bold text-center mb-6">How to Take Online Admission in {university?.universityName} Online ?</h2>
-  
-  {/* Header Description */}
-  <p className="text-center text-gray-700 mb-8 max-w-3xl mx-auto">
-    {university?.howtoapply?.[0]?.header}
-  </p>
+          {/* Steps */}
+          <div className="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
+            {university?.howtoapply?.slice(1).map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+                whileHover={{ 
+                  scale: 1.05, 
+                  y: -10,
+                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+                }}
+                className="flex flex-col items-center bg-white border-2 border-red-200 rounded-2xl p-8 w-64 text-center shadow-xl hover:shadow-2xl transition-all duration-500 hover:border-red-400"
+              >
+                <motion.div
+                  whileHover={{ rotate: 360, scale: 1.2 }}
+                  transition={{ duration: 0.6 }}
+                  className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-red-600 to-red-700 text-white rounded-full mb-6 font-bold text-xl shadow-lg"
+                >
+                  {index + 1}
+                </motion.div>
+                <h3 className="font-bold text-red-900 text-lg mb-3">{step.title}</h3>
+                <p className="text-red-700 leading-relaxed">{step.detail}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
 
-  {/* Steps */}
-  <div className="flex flex-wrap justify-center gap-6">
-    {university?.howtoapply?.slice(1).map((step, index) => (
-      <div
-        key={index}
-        className="flex flex-col items-center bg-white border border-gray-300 rounded-lg p-5 w-48 text-center shadow-sm"
-      >
-        <div className="flex items-center justify-center w-10 h-10 bg-indigo-600 text-white rounded-full mb-3 font-bold text-lg">
-          {index + 1}
-        </div>
-        <h3 className="font-semibold text-lg mb-1">{step.title}</h3>
-        <p className="text-gray-600 text-sm">{step.detail}</p>
-      </div>
-    ))}
-  </div>
-</section>
+        {/* Features Section */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 2.4 }}
+          className="px-6 md:px-12 py-12 bg-gradient-to-br from-red-50 to-white"
+        >
+          <motion.h3 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="font-bold text-3xl text-red-800 mb-8 text-center"
+          >
+            🏛️ University Features
+          </motion.h3>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {/* Learning Methodology */}
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              whileHover={{ scale: 1.02, y: -5 }}
+              className="bg-white p-8 rounded-2xl shadow-xl border-2 border-red-100 hover:shadow-2xl transition-all duration-300"
+            >
+              <h4 className="font-bold text-red-700 text-xl mb-4 flex items-center">
+                <span className="text-2xl mr-3">🎯</span>
+                Learning Methodology
+              </h4>
+              <p className="text-red-600 leading-relaxed text-lg">{university.features.learningMethodology}</p>
+            </motion.div>
+            
+            {/* Support Services */}
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              whileHover={{ scale: 1.02, y: -5 }}
+              className="bg-white p-8 rounded-2xl shadow-xl border-2 border-red-100 hover:shadow-2xl transition-all duration-300"
+            >
+              <h4 className="font-bold text-red-700 text-xl mb-4 flex items-center">
+                <span className="text-2xl mr-3">🛠️</span>
+                Support Services
+              </h4>
+              <div className="space-y-3">
+                {university.features.supportServices.map((service, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: 0.6 + i * 0.1 }}
+                    className="flex items-center bg-red-50 p-3 rounded-lg border border-red-100"
+                  >
+                    <FaCheckCircle className="mr-3 text-red-500 flex-shrink-0" size={16} />
+                    <span className="text-red-700 font-medium">{service}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
 
-      {/* Features */}
-      <div className="px-6 py-4 bg-gray-50">
-        <h3 className="font-bold text-lg text-gray-800 mb-3">University Features</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="bg-white p-4 rounded-lg shadow-sm">
-            <h4 className="font-medium text-red-700 mb-2">Learning Methodology</h4>
-            <p className="text-sm text-gray-600">{university.features.learningMethodology}</p>
+          {/* Placement Support */}
+          {university.features.placementSupport && (
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              whileHover={{ scale: 1.02 }}
+              className="mt-8 flex items-center justify-center bg-gradient-to-r from-red-100 to-red-200 text-red-800 p-6 rounded-2xl border-2 border-red-300 shadow-xl hover:shadow-2xl transition-all duration-300 max-w-2xl mx-auto"
+            >
+              <motion.div
+                whileHover={{ rotate: 15, scale: 1.1 }}
+                className="mr-4"
+              >
+                <FaUserGraduate size={24} />
+              </motion.div>
+              <span className="font-bold text-lg">🎯 Placement Support Available</span>
+            </motion.div>
+          )}
+        </motion.div>
+
+        {/* Contact Form Overlay */}
+        <AnimatePresence>
+          {contactFormVisible && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 w-full bg-black bg-opacity-50 backdrop-blur-sm z-50  p-4"
+            >
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+              >
+                <UniversityContactForm 
+                  universityName={university.universityName} 
+                  logoUrl={university.logo} 
+                  onClose={handleContactFormToggle} 
+                />
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Enhanced CTA Footer */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 2.6 }}
+          className="px-6 md:px-12 py-8 bg-gradient-to-r from-red-600 to-red-700 flex flex-col md:flex-row justify-between items-center gap-6"
+        >
+          <div className="text-center md:text-left">
+            <p className="text-white font-medium text-lg mb-2">🚀 Ready to Transform Your Future?</p>
+            <p className="text-red-100">Apply now for upcoming sessions and unlock your potential</p>
           </div>
           
-          <div className="bg-white p-4 rounded-lg shadow-sm">
-            <h4 className="font-medium text-red-700 mb-2">Support Services</h4>
-            <ul className="text-sm text-gray-600 space-y-1">
-              {university.features.supportServices.map((service, i) => (
-                <li key={i} className="flex items-center">
-                  <FaCheckCircle className="mr-2 text-red-500" size={12} />
-                  {service}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-        
-        {university.features.placementSupport && (
-          <div className="mt-4 flex items-center bg-red-50 text-red-700 p-3 rounded-lg">
-            <FaUserGraduate className="mr-2" />
-            <span className="font-medium">Placement Support Available</span>
-          </div>
-        )}
-      </div>
-{contactFormVisible && (
-          <div className=" fixed top-0 w-full bg-amber-950">
-            <UniversityContactForm universityName={university.universityName} logoUrl={university.logo} onClose={handleContactFormToggle} />
-          </div>
-        )}
-      {/* CTA */}
-      <div className="px-6 py-4 border-t border-gray-100 flex justify-between items-center">
-        <span className="text-sm text-gray-500">Apply now for upcoming sessions</span>
-        
-        <motion.button
-        onClick={handleContactFormToggle}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="bg-red-700 hover:bg-red-800 text-white font-medium py-2 px-6 rounded-lg shadow-md focus:outline-none"
-        >
-          Apply Now
-        </motion.button>
-      </div>
-    </motion.div>
-  </div>
+          <motion.button
+            onClick={handleContactFormToggle}
+            whileHover={{ scale: 1.05, y: -3 }}
+            whileTap={{ scale: 0.98 }}
+            className="bg-white hover:bg-red-50 text-red-700 font-bold py-4 px-8 rounded-xl shadow-xl hover:shadow-2xl focus:outline-none border-2 border-transparent hover:border-red-200 transition-all duration-300"
+          >
+            ✨ Apply Now - Start Your Journey
+          </motion.button>
+        </motion.div>
+      </motion.div>
+    </div>
   );
 }

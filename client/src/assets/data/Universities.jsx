@@ -545,10 +545,11 @@ const universities = [
  {
   universityName: "Lovely Professional University",
   About: [
-    "Lovely Professional University (LPU) is a young but prominent university in India. Established in 2005 under the Lovely Professional University Act, LPU began operations in 2006. Founded by the Lovely International Trust, it has grown rapidly, becoming one of India’s largest single-campus private universities. LPU offers a vast array of courses across over 40 disciplines. LPU Online is an extension of Lovely Professional University, a top educational university in India that offers various types of online programs designed to cater to the needs of distance learners globally. The university aims to deliver flexible, affordable, and quality education that mirrors the standards and rigor of its on-campus offerings.",
-    "LPU platform allows students to pursue various undergraduate, postgraduate, and diploma programs across fields such as Business Administration, Computer Applications, Information Technology, Commerce, and the Arts. Its courses are structured to provide an interactive and engaging learning experience. The university utilizes modern technology to deliver lectures, tutorials, and interactive sessions through a user-friendly digital platform. This approach ensures that students gain theoretical and practical knowledge relevant to their field. LPU Online college supports its students with comprehensive resources, including digital libraries, online discussion forums, and dedicated academic assistance. Its commitment to academic excellence and accessibility makes it the best choice for students. Its global reach and ability to provide a learning environment that is both flexible and supportive make LPU the best online university."
+    "Lovely Professional University (LPU), established in 2005 under the Lovely Professional University Act and operational since 2006, has quickly emerged as one of India’s largest and most prominent single-campus private universities. Founded by the Lovely International Trust, LPU has become a leader in higher education, offering a diverse range of programs across more than 40 disciplines.",
+    "LPU Online is the digital learning arm of the university, designed to meet the evolving needs of modern learners. It provides a flexible, accessible, and high-quality education that reflects the academic standards of LPU’s on-campus offerings. The platform caters to students around the globe who seek a comprehensive learning experience without geographical limitations.",
+    "LPU Online offers a wide selection of undergraduate, postgraduate, and diploma programs in fields such as Business Administration, Computer Applications, Information Technology, Commerce, and Arts. The curriculum is thoughtfully developed to ensure both academic depth and industry relevance, blending theoretical knowledge with practical application."
   ],
-  description: "Enroll now at LPU Online University to enhance your career skills through our comprehensive online courses. With UGC–DEB recognition and an NAAC A++ grade, LPU stands out as one of India’s top universities, ranked 27th in the NIRF.",
+  description: "Join LPU Online to elevate your career with our industry-relevant and comprehensive online programs. Recognized by UGC–DEB and accredited with an NAAC A++ grade, Lovely Professional University ranks among India’s top institutions, securing the 27th position in the NIRF rankings. Experience quality education designed for the modern learner—flexible, accessible, and impactful.",
   logo: "/logos/lpu.webp",
   img: "/images/lpu.webp",
   location: "Phagwara, Punjab, India",
@@ -717,128 +718,124 @@ const universities = [
   { feature: "NIRF Rank", details: "38 (University Category, 2023)" },
   { feature: "Student Rating", details: "4.3/5" }
 ],
-EMIOptionAvailable:"No processing fee is charged when students opt to pay their fees in installments over time. This scheme is designed to make education more financially accessible and manageable by reducing upfront costs and spreading payments. The university offers EMI facilities in its online courses. There are some minimum percentage charges in some LPU online courses. The tenurity for online UG courses is 24 months, and PG courses are 18 months.",
+EMIOptionAvailable:"LPU Online offers convenient EMI (Equated Monthly Installment) facilities to make higher education more financially accessible. Students can opt to pay their program fees in easy installments without any processing charges, helping reduce upfront financial burden. This flexible payment scheme is available across various online courses.",
 
 KeyFeaturesofEMI: [
   {
-    title: "Flexible Payment Options",
-    body: "Spread the cost of your tuition fees across manageable monthly instalments."
+    "title": "Flexible Payment Options",
+    "body": "Distribute your tuition fees into manageable monthly installments, easing financial planning."
   },
   {
-    title: "Interest-Free EMI",
-    body: "Pay your fees in instalments without any additional interest, making education more affordable."
+    "title": "Interest-Free EMI",
+    "body": "Opt for installment payments without incurring additional interest, making education more affordable."
   },
   {
-    title: "Broad Accessibility",
-    body: "Available for various undergraduate, postgraduate, and doctoral programs."
+    "title": "Broad Accessibility",
+    "body": "EMI options are available across a wide range of undergraduate, postgraduate, and doctoral programs."
   },
   {
-    title: "Simple Application Process",
-    body: "Easily apply for EMI options through a straightforward approval process with minimal hassle."
+    "title": "Simple Application Process",
+    "body": "Apply for EMI plans through a straightforward approval process with minimal documentation."
   },
   {
-    title: "Better Financial Management",
-    body: "Helps students and their families manage finances more effectively by avoiding large upfront payments."
+    "title": "Better Financial Management",
+    "body": "Facilitates effective financial planning by reducing the burden of lump-sum payments."
   },
   {
-    title: "Inclusive Support for Students",
-    body: "Designed to support students from diverse financial backgrounds, ensuring equal access to quality education."
+    "title": "Inclusive Support for Students",
+    "body": "Designed to assist students from diverse financial backgrounds, promoting equal access to education."
   },
   {
-    title: "Collaborations with Financial Institutions",
-    body: "Partnerships with leading banks and financial institutions to provide secure and reliable EMI plans."
+    "title": "Collaborations with Financial Institutions",
+    "body": "Partnerships with leading banks and financial institutions ensure secure and reliable EMI plans."
   }
 ],
 WhyShouldYouChoose: [
   {
-    feature: "Reputation of Excellence",
-    detail: "LPU Online or Professional University is a top private university with a strong academic excellence and innovation reputation. Choosing LPU for online degree courses ensures quality education from a trusted university."
+    "feature": "Reputation of Excellence",
+    "detail": "LPU Online is a premier private university known for its commitment to academic excellence and innovation, ensuring quality education for online learners."
   },
   {
-    feature: "Affordable Fee Structure",
-    detail: "LPU online courses are more affordable than regular programs. There are no room and board costs associated with online learning, making it an attractive option for many students."
+    "feature": "Affordable Fee Structure",
+    "detail": "Online courses at LPU are cost-effective, eliminating expenses like accommodation and commuting, making education accessible to a broader audience."
   },
   {
-    feature: "Flexible Learning Options",
-    detail: "Online learning with LPU is designed to accommodate the schedules of working professionals and individuals with personal commitments. Learners can conveniently access study materials and engage in virtual learning sessions."
+    "feature": "Flexible Learning Options",
+    "detail": "LPU Online offers flexible learning schedules, allowing students to balance their studies with personal and professional commitments."
   },
   {
-    feature: "Industry-Oriented Curriculum",
-    detail: "The LPU Online curriculum is co-designed with industry experts. It blends academic rigour with practical skills to prepare students for today’s job market and foster holistic development."
+    "feature": "Industry-Oriented Curriculum",
+    "detail": "Curriculum co-designed with industry experts ensures that students acquire practical skills relevant to current market demands."
   },
   {
-    feature: "Recognized Degrees",
-    detail: "LPU online degrees are recognized by UGC-DEB. The university accreditation ensures that employers and other universities recognise and value the degree. LPU’s reputation for excellence attracts students from around the world."
+    "feature": "Recognized Degrees",
+    "detail": "Degrees from LPU Online are recognized by UGC-DEB, ensuring their validity and acceptance by employers and educational institutions."
   },
   {
-    feature: "Placement Assistance",
-    detail: "LPU Placement Support Services prepares students for the job market, providing opportunities through impactful Placement Drives and a Professional Enhancement Programme tailored to different professional needs."
+    "feature": "Placement Assistance",
+    "detail": "LPU Online provides dedicated placement support, including professional enhancement programs and placement drives to facilitate career opportunities."
   }
 ],
 Benefits: [
   {
-    icon:"FaLaptop",
-    title: "Learning Management System (LMS)",
-    detail: "Learning Management System (LMS) provides a user-friendly platform for accessing course materials, submitting assignments, engaging in online discussions, and tracking progress. The LMS is accessible anytime, anywhere, making it convenient for students."
+    "icon": "FaLaptop",
+    "title": "Learning Management System (LMS)",
+    "detail": "A user-friendly platform providing access to course materials, assignments, discussions, and progress tracking anytime, anywhere."
   },
   {
-    icon:"FaChalkboardTeacher",
-    title: "Interactive Virtual Classrooms",
-    detail: "LPU offers interactive virtual classrooms that allow students to engage with faculty and peers in real-time. These classrooms have various tools and features that make it easy to participate in discussions, ask questions, and collaborate on projects."
+    "icon": "FaChalkboardTeacher",
+    "title": "Interactive Virtual Classrooms",
+    "detail": "Real-time engagement with faculty and peers through virtual classrooms equipped with collaborative tools."
   },
   {
-    icon:"FaBookOpen",
-    title: "E-Learning Resources",
-    detail: "LPU provides students with a comprehensive collection of e-learning resources, including e-books, video tutorials, simulations, and interactive exercises. These resources improve the education experience and cater to different learning styles."
+    "icon": "FaBookOpen",
+    "title": "E-Learning Resources",
+    "detail": "Comprehensive digital resources including e-books, video tutorials, and interactive exercises to support diverse learning styles."
   },
   {
-    icon:"FaHeadphonesAlt",
-    title: "24/7 Dedicated Support System",
-    detail: "LPU provides comprehensive student support services for online learning students. These include academic guidance, technical assistance, and career counseling to ensure that students have all the necessary resources."
+    "icon": "FaHeadphonesAlt",
+    "title": "24/7 Dedicated Support System",
+    "detail": "Round-the-clock academic guidance, technical assistance, and career counseling to support student success."
   },
   {
-    icon:"FaFileAlt",
-    title: "Online Assessments and Exams",
-    detail: "LPU conducts online assessments and exams to evaluate students' understanding of the course material. These assessments provide valuable feedback and help students track their progress throughout the program."
+    "icon": "FaFileAlt",
+    "title": "Online Assessments and Exams",
+    "detail": "Conducting assessments and exams online to evaluate understanding and provide timely feedback."
   },
   {
-    icon:"FaUserTie",
-    title: "Experienced Faculty",
-    detail: "Learn from experienced and industry-connected faculty members who bring real-world insights to the classroom. Furthermore, students can join live classes to engage in real-time discussions with the professors."
+    "icon": "FaUserTie",
+    "title": "Experienced Faculty",
+    "detail": "Learn from seasoned educators and industry professionals who bring real-world insights into the virtual classroom."
   }
-],
+]
+,
 HowareExamsconducted: [
   {
-    title: "Platform",
-    details:
-      'Exams are conducted through the "My Class" interface, accessible via the university Learning Management System (LMS). The exam schedule is available through the LPU e-Connect portal or the university notice board. This centralized platform makes tracking and managing your exam schedules and results easy.',
+    "title": "Platform",
+    "details": "Exams are administered through the 'My Class' interface within the LMS, with schedules accessible via the LPU e-Connect portal."
   },
   {
-    title: "Proctoring",
-    details:
-      "The exams are monitored using proctoring software to ensure fair testing conditions. This involves using webcams and microphones. Proctoring maintains the credibility of the exam process by preventing any form of cheating.",
+    "title": "Proctoring",
+    "details": "Utilization of proctoring software with webcam and microphone access to maintain exam integrity."
   },
   {
-    title: "Device Compatibility",
-    details:
-      "You can appear for exams using a laptop, desktop, or even your smartphone. This flexibility ensures that you can take exams from a location and device that is most convenient for you.",
+    "title": "Device Compatibility",
+    "details": "Exams can be taken on various devices, including laptops, desktops, and smartphones, offering flexibility to students."
   },
   {
-    title: "Exam Format",
-    details:
-      "The format of exams can vary depending on the course. They may include multiple-choice questions, essays, short answer questions, or a combination thereof. This helps in analyzing your understanding of the course material.",
+    "title": "Exam Format",
+    "details": "Assessment formats vary by course and may include multiple-choice questions, essays, and short answers to comprehensively evaluate knowledge."
   },
   {
-    title: "Preparation",
-    details:
-      "Students are familiarized with the online exam system during their induction program or before the exams through demo videos. This ensures they're comfortable with the interface and testing procedures. Regular mock tests are also provided to help students practice and feel confident.",
+    "title": "Preparation",
+    "details": "Students receive orientation and demo sessions to familiarize themselves with the online exam system, supplemented by mock tests."
   },
   {
-    title: "Continuous Assessment",
-    details:
-      "The University uses continuous assessment through assignments, quizzes, and projects alongside final exams. This approach keeps students consistently engaged and helps them apply their learning practically.",
-  },
-],
+    "title": "Continuous Assessment",
+    "details": "Ongoing evaluations through assignments, quizzes, and projects complement final exams to ensure consistent engagement."
+  }
+]
+,
 acreditationsApprovals: [
     {
       "img": "/regulatoryLogo/ugc-icon.webp",
