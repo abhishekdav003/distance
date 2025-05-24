@@ -7,40 +7,39 @@ const Footer = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle subscription logic here
     console.log('Subscribing email:', email);
     setEmail('');
     alert('Thank you for subscribing!');
   };
 
   return (
-    <footer className="bg-gray-800 rounded-t-xl text-white pt-10 pb-4">
-      {/* Contact information section */}
+    <footer className="bg-white rounded-t-xl text-red-800 pt-10 pb-6 shadow-lg shadow-red-200">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
+        {/* Contact Info */}
         <div className="flex flex-col md:flex-row justify-between gap-8 mb-10">
           {/* Find us */}
           <div className="flex items-start gap-3">
             <div className="mt-1">
-              <FaMapMarkerAlt className="text-red-400 text-2xl" />
+              <FaMapMarkerAlt className="text-red-600 text-2xl" />
             </div>
             <div>
-              <h3 className="text-lg font-medium text-red-400">Find us</h3>
-              <p className="text-sm mt-1">B 15, Second floor, Sector 2, Noida 201301</p>
+              <h3 className="text-lg font-semibold text-red-600">Find us</h3>
+              <p className="text-sm mt-1 text-red-700">B 15, Second floor, Sector 2, Noida 201301</p>
             </div>
           </div>
 
           {/* Call us */}
           <div className="flex items-start gap-3">
             <div className="mt-1">
-              <FaPhone className="text-red-400 text-2xl" />
+              <FaPhone className="text-red-600 text-2xl" />
             </div>
             <div>
-              <h3 className="text-lg font-medium text-red-400">Call us</h3>
+              <h3 className="text-lg font-semibold text-red-600">Call us</h3>
               <p className="text-sm mt-1">
-                <a href="tel:+918336889553" className="hover:text-red-200 transition duration-400">+91-8336889553</a>
+                <a href="tel:+918336889553" className="hover:text-red-400 transition duration-300 text-red-700">+91-8336889553</a>
               </p>
               <p className="text-sm mt-1">
-                <a href="tel:+919008525443" className="hover:text-red-200 transition duration-400">+91-9008525443</a>
+                <a href="tel:+919008525443" className="hover:text-red-400 transition duration-300 text-red-700">+91-9008525443</a>
               </p>
             </div>
           </div>
@@ -48,94 +47,115 @@ const Footer = () => {
           {/* Mail us */}
           <div className="flex items-start gap-3">
             <div className="mt-1">
-              <FaEnvelope className="text-red-400 text-2xl" />
+              <FaEnvelope className="text-red-600 text-2xl" />
             </div>
             <div>
-              <h3 className="text-lg font-medium text-red-400">Mail us</h3>
+              <h3 className="text-lg font-semibold text-red-600">Mail us</h3>
               <p className="text-sm mt-1">
-                <a href="mailto:hi@edukyu.com" className="hover:text-red-200 transition duration-400">hi@edukyu.com</a>
+                <a href="mailto:hi@edukyu.com" className="hover:text-red-400 transition duration-300 text-red-700">hi@edukyu.com</a>
               </p>
             </div>
           </div>
         </div>
 
-        <hr className="border-gray-600 my-6" />
+        <hr className="border-red-300 my-6" />
 
         {/* Main footer content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
             <div className="mb-6">
-              <Link to="/" className="text-3xl font-bold text-white">
+              <Link to="/" className="text-3xl font-bold text-red-800 hover:text-red-600 transition">
                 EduKyū
               </Link>
             </div>
-            <p className="text-sm text-gray-400 mb-5">
+            <p className="text-sm text-red-700 mb-5">
               Edukyu, your trusted partner for Online education. We are a premier aggregator platform, bringing together a diverse range of specialized online courses from renowned Indian universities.
             </p>
           </div>
 
           {/* Useful Links */}
           <div>
-            <h3 className="text-lg font-medium mb-4 relative">
+            <h3 className="text-lg font-semibold mb-4 relative text-red-700">
               Useful Links
-              <span className="absolute bottom-0 left-0 w-12 h-1 bg-red-400 -mb-2"></span>
+              <span className="absolute bottom-0 left-0 w-12 h-1 bg-red-600 -mb-2 rounded"></span>
             </h3>
             <ul className="mt-4 space-y-2">
-              <li><Link to="/about-us" className="text-gray-400 hover:text-red-400 flex items-center"><span className="mr-2">›</span> About Us</Link></li>
-              <li><Link to="/our-team" className="text-gray-400 hover:text-red-400 flex items-center"><span className="mr-2">›</span> Our Team</Link></li>
-              <li><Link to="/partner-with-us" className="text-gray-400 hover:text-red-400 flex items-center"><span className="mr-2">›</span> Partner With Us</Link></li>
-              <li><Link to="/refer-and-earn" className="text-gray-400 hover:text-red-400 flex items-center"><span className="mr-2">›</span> Refer And Earn</Link></li>
-              <li><Link to="/blogs" className="text-gray-400 hover:text-red-400 flex items-center"><span className="mr-2">›</span> Blogs</Link></li>
-              <li><Link to="/contact-us" className="text-gray-400 hover:text-red-400 flex items-center"><span className="mr-2">›</span> Contact Us</Link></li>
-              <li><Link to="/sgpa-calculator" className="text-gray-400 hover:text-red-400 flex items-center"><span className="mr-2">›</span> SGPA To Calculator</Link></li>
-              <li><Link to="/cgpa-calculator" className="text-gray-400 hover:text-red-400 flex items-center"><span className="mr-2">›</span> CGPA To Calculator</Link></li>
-              <li><Link to="/sgpa-to-cgpa" className="text-gray-400 hover:text-red-400 flex items-center"><span className="mr-2">›</span> SGPA To CGPA</Link></li>
+              {[
+                { to: "/about-us", label: "About Us" },
+                { to: "/our-team", label: "Our Team" },
+                { to: "/partner-with-us", label: "Partner With Us" },
+                { to: "/refer-and-earn", label: "Refer And Earn" },
+                { to: "/blogs", label: "Blogs" },
+                { to: "/contact-us", label: "Contact Us" },
+                { to: "/sgpa-calculator", label: "SGPA To Calculator" },
+                { to: "/cgpa-calculator", label: "CGPA To Calculator" },
+                { to: "/sgpa-to-cgpa", label: "SGPA To CGPA" },
+              ].map(({ to, label }) => (
+                <li key={to}>
+                  <Link to={to} className="text-red-600 hover:text-red-800 flex items-center transition duration-300">
+                    <span className="mr-2">›</span> {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Online Courses */}
           <div>
-            <h3 className="text-lg font-medium mb-4 relative">
+            <h3 className="text-lg font-semibold mb-4 relative text-red-700">
               Online Courses
-              <span className="absolute bottom-0 left-0 w-12 h-1 bg-red-400 -mb-2"></span>
+              <span className="absolute bottom-0 left-0 w-12 h-1 bg-red-600 -mb-2 rounded"></span>
             </h3>
             <ul className="mt-4 space-y-2">
-              <li><Link to="/courses/mba" className="text-gray-400 hover:text-red-400 flex items-center"><span className="mr-2">›</span> Masters In Business Administration</Link></li>
-              <li><Link to="/courses/bba" className="text-gray-400 hover:text-red-400 flex items-center"><span className="mr-2">›</span> Bachelors In Business Administration</Link></li>
-              <li><Link to="/courses/marketing-management" className="text-gray-400 hover:text-red-400 flex items-center"><span className="mr-2">›</span> Marketing Management (MBA)</Link></li>
-              <li><Link to="/courses/hrm" className="text-gray-400 hover:text-red-400 flex items-center"><span className="mr-2">›</span> Human Resource Management (MBA)</Link></li>
-              <li><Link to="/courses/financial-management" className="text-gray-400 hover:text-red-400 flex items-center"><span className="mr-2">›</span> Financial Management (MBA)</Link></li>
+              {[
+                { to: "/courses/mba", label: "Masters In Business Administration" },
+                { to: "/courses/bba", label: "Bachelors In Business Administration" },
+                { to: "/courses/marketing-management", label: "Marketing Management (MBA)" },
+                { to: "/courses/hrm", label: "Human Resource Management (MBA)" },
+                { to: "/courses/financial-management", label: "Financial Management (MBA)" },
+              ].map(({ to, label }) => (
+                <li key={to}>
+                  <Link to={to} className="text-red-600 hover:text-red-800 flex items-center transition duration-300">
+                    <span className="mr-2">›</span> {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Locations & Subscribe */}
           <div>
-            <h3 className="text-lg font-medium mb-4 relative">
+            <h3 className="text-lg font-semibold mb-4 relative text-red-700">
               Locations
-              <span className="absolute bottom-0 left-0 w-12 h-1 bg-red-400 -mb-2"></span>
+              <span className="absolute bottom-0 left-0 w-12 h-1 bg-red-600 -mb-2 rounded"></span>
             </h3>
             <ul className="mt-4 space-y-2 mb-6">
-              <li><Link to="/locations/noida" className="text-gray-400 hover:text-red-400">Noida</Link></li>
-              <li><Link to="/locations/bangalore" className="text-gray-400 hover:text-red-400">Bangalore</Link></li>
-              <li><Link to="/locations/kolkata" className="text-gray-400 hover:text-red-400">Kolkata</Link></li>
-              <li><Link to="/locations/lucknow" className="text-gray-400 hover:text-red-400">Lucknow</Link></li>
+              {["noida", "bangalore", "kolkata", "lucknow"].map((loc) => (
+                <li key={loc}>
+                  <Link to={`/locations/${loc}`} className="text-red-600 hover:text-red-800 transition duration-300">
+                    {loc.charAt(0).toUpperCase() + loc.slice(1)}
+                  </Link>
+                </li>
+              ))}
             </ul>
 
-            <h3 className="text-lg font-medium mb-4 mt-8">Subscribe</h3>
-            <p className="text-sm text-gray-400 mb-4">Don't miss out on our latest updates! Enter your email to subscribe.</p>
+            <h3 className="text-lg font-semibold mb-4 mt-8 text-red-700">Subscribe</h3>
+            <p className="text-sm text-red-600 mb-4">
+              Don't miss out on our latest updates! Enter your email to subscribe.
+            </p>
             <form onSubmit={handleSubmit} className="flex">
               <input
                 type="email"
                 placeholder="Email Address"
-                className="flex-grow px-4 py-2 border border-white text-gray-800 focus:outline-none"
+                className="flex-grow px-4 py-2 border border-red-400 rounded-l-md text-red-800 focus:outline-none focus:ring-2 focus:ring-red-600"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
-              <button 
-                type="submit" 
-                className="bg-red-400 text-white px-4 py-2 hover:bg-red-400 transition-colors cursor-pointer"
+              <button
+                type="submit"
+                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-r-md transition-colors"
               >
                 <FaPaperPlane />
               </button>
@@ -143,26 +163,41 @@ const Footer = () => {
 
             {/* Social Media */}
             <div className="flex space-x-4 mt-6">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="bg-gray-800 p-2 rounded-md hover:bg-gray-700 transition">
-                <FaInstagram />
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="bg-gray-800 p-2 rounded-md hover:bg-gray-700 transition">
-                <FaLinkedin />
-              </a>
-              <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" className="bg-gray-800 p-2 rounded-md hover:bg-gray-700 transition">
-                <FaPinterest />
-              </a>
+              {[{
+                href: "https://instagram.com",
+                icon: <FaInstagram />,
+                label: "Instagram"
+              }, {
+                href: "https://linkedin.com",
+                icon: <FaLinkedin />,
+                label: "LinkedIn"
+              }, {
+                href: "https://pinterest.com",
+                icon: <FaPinterest />,
+                label: "Pinterest"
+              }].map(({ href, icon, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-red-100 text-red-700 p-2 rounded-md hover:bg-red-200 transition"
+                  aria-label={label}
+                >
+                  {icon}
+                </a>
+              ))}
             </div>
           </div>
         </div>
 
         {/* Copyright */}
-        <div className="mt-10 pt-6 border-t border-gray-700 text-center text-sm text-gray-400">
+        <div className="mt-10 pt-6 border-t border-red-300 text-center text-sm text-red-600">
           <p className="mb-4">
-            By continuing past this page, you agree to our 
-            <Link to="/terms" className="text-red-400 hover:underline mx-1">Terms of Service</Link>,
-            <Link to="/privacy" className="text-red-400 hover:underline mx-1">Privacy Policy</Link> and
-            <Link to="/refund" className="text-red-400 hover:underline mx-1">Refund Policy</Link>.
+            By continuing past this page, you agree to our
+            <Link to="/terms" className="text-red-700 hover:underline mx-1">Terms of Service</Link>,
+            <Link to="/privacy" className="text-red-700 hover:underline mx-1">Privacy Policy</Link> and
+            <Link to="/refund" className="text-red-700 hover:underline mx-1">Refund Policy</Link>.
           </p>
           <p>© {new Date().getFullYear()} - Edukyu Private Limited. All rights reserved.</p>
         </div>
