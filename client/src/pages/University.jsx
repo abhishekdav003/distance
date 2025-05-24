@@ -535,56 +535,57 @@ function UniversityCard({ university }) {
         </motion.div>
 
         {/* Why Choose Section with Enhanced Table */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="px-6 md:px-12 py-12 bg-white"
-        >
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl font-bold text-red-800 mb-8 text-center"
-          >
-            ✨ Why Should You Choose {university?.universityName} Online
-          </motion.h2>
-          
-          <div className="overflow-hidden rounded-2xl shadow-2xl border border-red-200">
-            <div className="overflow-x-auto">
-              <table className="min-w-full">
-                <thead className="bg-gradient-to-r from-red-600 to-red-700">
-                  <tr>
-                    <th className="px-6 py-4 text-left font-bold text-white text-lg">
-                      Feature
-                    </th>
-                    <th className="px-6 py-4 text-left font-bold text-white text-lg">
-                      Details
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white">
-                  {university?.WhyShouldYouChoose?.map((data, index) => (
-                    <motion.tr 
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.1 }}
-                      className="border-b border-red-100 hover:bg-red-50 transition-colors duration-300"
-                    >
-                      <td className="px-6 py-4 font-semibold text-red-900 text-base">
-                        {data?.feature}
-                      </td>
-                      <td className="px-6 py-4 text-red-700 leading-relaxed">
-                        {data?.detail}
-                      </td>
-                    </motion.tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </motion.div>
+  <motion.div 
+  initial={{ opacity: 0, y: 30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, delay: 0.8 }}
+  className="px-4 md:px-12 py-12 bg-white"
+>
+  <motion.h2 
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+    className="text-2xl md:text-3xl font-bold text-red-800 mb-6 md:mb-8 text-center"
+  >
+    ✨ Why Should You Choose {university?.universityName} Online
+  </motion.h2>
+  
+  <div className="overflow-hidden rounded-2xl shadow-2xl border border-red-200">
+    <div className="overflow-x-auto w-full">
+      <table className="min-w-[640px] md:min-w-full bg-white">
+        <thead className="bg-gradient-to-r from-red-600 to-red-700">
+          <tr>
+            <th className="px-4 md:px-6 py-3 md:py-4 text-left font-bold text-white text-base md:text-lg">
+              Feature
+            </th>
+            <th className="px-4 md:px-6 py-3 md:py-4 text-left font-bold text-white text-base md:text-lg">
+              Details
+            </th>
+          </tr>
+        </thead>
+        <tbody className="bg-white">
+          {university?.WhyShouldYouChoose?.map((data, index) => (
+            <motion.tr 
+              key={index}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className="border-b border-red-100 hover:bg-red-50 transition-colors duration-300"
+            >
+              <td className="px-4 md:px-6 py-3 md:py-4 font-semibold text-red-900 text-sm md:text-base">
+                {data?.feature}
+              </td>
+              <td className="px-4 md:px-6 py-3 md:py-4 text-red-700 text-sm md:text-base leading-relaxed">
+                {data?.detail}
+              </td>
+            </motion.tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</motion.div>
+
 
         {/* Benefits Section with Creative Cards */}
         <motion.section 
