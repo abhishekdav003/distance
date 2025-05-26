@@ -4,9 +4,8 @@ import Home from '../pages/Home';
 import AboutUs from '../pages/AboutUs';
 import University from '../pages/University';
 import UniversityComparisonPage from '../pages/UniversityComparisonPage.jsx';
-// import Courses from '../pages/Courses.jsx';
 import CourseCollegesComponent from '../pages/Courses.jsx'
-
+import UniversityDetailPage from '../pages/UniversityDetailPage.jsx';
 
 const routes = createBrowserRouter(
     [
@@ -15,25 +14,30 @@ const routes = createBrowserRouter(
             element: <App />,
             children:[
                 {
-                    path:'/',
+                    path: '',  // Changed from '/' to '' for index route
                     element: <Home />
                 },
                 {
-                    path:'about-us',
+                    path: 'about-us',  // Removed leading slash
                     element: <AboutUs />
                 },
                 {
-                    path:'compare-colleges',
+                    path: 'compare-colleges',  // Removed leading slash
                     element: <UniversityComparisonPage />
                 },
                 {
-                    path:'/:university-name',
+                    path: 'colleges',  // Removed leading slash and moved before dynamic route
+                    element: <CourseCollegesComponent />
+                },
+                {
+                    path: 'university/:universityName',  // Fixed dynamic route pattern
                     element: <University />
                 },
                 {
-                    path: '/colleges',
-                    element: <CourseCollegesComponent />
+                    path: '/university/:universityId/:courseId',
+                    element: <UniversityDetailPage />
                 }
+                
             ]
         }
     ]
