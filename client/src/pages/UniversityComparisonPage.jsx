@@ -347,7 +347,7 @@ const UniversityComparisonPage = () => {
               onMouseLeave={() => setIsDropdown1Open(false)}
             >
               <div 
-                className="bg-white border border-gray-300 rounded-lg px-4 py-2 flex items-center justify-between cursor-pointer hover:border-teal-500 transition-colors"
+                className="bg-white border border-gray-300 rounded-lg px-4 py-2 flex items-center justify-between cursor-pointer hover:border-red-500 transition-colors"
                 onClick={() => setIsDropdown1Open(!isDropdown1Open)}
               >
                 <span className={`${selectedUniversity1 ? 'text-gray-800' : 'text-gray-500'}`}>
@@ -366,7 +366,7 @@ const UniversityComparisonPage = () => {
                   {universities.map((university, index) => (
                     <div 
                       key={index}
-                      className={`px-4 py-2 cursor-pointer hover:bg-teal-50 ${selectedUniversity2 === university ? 'opacity-50 cursor-not-allowed' : ''} ${selectedUniversity1 === university ? 'bg-teal-100' : ''}`}
+                      className={`px-4 py-2 cursor-pointer hover:bg-red-50 ${selectedUniversity2 === university ? 'opacity-50 cursor-not-allowed' : ''} ${selectedUniversity1 === university ? 'bg-red-100' : ''}`}
                       onClick={() => selectedUniversity2 !== university && selectUniversity1(university)}
                     >
                       {university}
@@ -384,7 +384,7 @@ const UniversityComparisonPage = () => {
               whileTap={{ scale: 0.9 }}
               disabled={!selectedUniversity1 || !selectedUniversity2 || isLoading}
               onClick={swapUniversities}
-              className={`p-2 rounded-full ${(selectedUniversity1 && selectedUniversity2) ? 'bg-teal-100 text-teal-600 hover:bg-teal-200' : 'bg-gray-100 text-gray-400'} transition-colors`}
+              className={`p-2 rounded-full ${(selectedUniversity1 && selectedUniversity2) ? 'bg-red-100 text-red-600 hover:bg-red-200' : 'bg-gray-100 text-gray-400'} transition-colors`}
             >
               <FiRepeat className={`text-xl ${isLoading ? 'animate-spin' : ''}`} />
             </motion.button>
@@ -400,7 +400,7 @@ const UniversityComparisonPage = () => {
               onMouseLeave={() => setIsDropdown2Open(false)}
             >
               <div 
-                className="bg-white border border-gray-300 rounded-lg px-4 py-2 flex items-center justify-between cursor-pointer hover:border-teal-500 transition-colors"
+                className="bg-white border border-gray-300 rounded-lg px-4 py-2 flex items-center justify-between cursor-pointer hover:border-red-500 transition-colors"
                 onClick={() => setIsDropdown2Open(!isDropdown2Open)}
               >
                 <span className={`${selectedUniversity2 ? 'text-gray-800' : 'text-gray-500'}`}>
@@ -419,7 +419,7 @@ const UniversityComparisonPage = () => {
                   {universities.map((university, index) => (
                     <div 
                       key={index}
-                      className={`px-4 py-2 cursor-pointer hover:bg-teal-50 ${selectedUniversity1 === university ? 'opacity-50 cursor-not-allowed' : ''} ${selectedUniversity2 === university ? 'bg-teal-100' : ''}`}
+                      className={`px-4 py-2 cursor-pointer hover:bg-red-50 ${selectedUniversity1 === university ? 'opacity-50 cursor-not-allowed' : ''} ${selectedUniversity2 === university ? 'bg-red-100' : ''}`}
                       onClick={() => selectedUniversity1 !== university && selectUniversity2(university)}
                     >
                       {university}
