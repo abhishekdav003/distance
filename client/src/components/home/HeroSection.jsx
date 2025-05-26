@@ -68,7 +68,7 @@ const HeroSection = () => {
   const currentUniversity = universities[currentIndex];
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-gradient-to-br from-red-900 via-red-800 to-red-600">
+    <div className="relative w-full h-auto py-24 overflow-hidden bg-gradient-to-br from-red-900 via-red-800 to-red-600">
       {/* Animated Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-10 left-10 w-72 h-72 bg-white rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
