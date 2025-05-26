@@ -29,8 +29,8 @@ const routes = createBrowserRouter(
                     path: 'colleges',  // Removed leading slash and moved before dynamic route
                     element: <CourseCollegesComponent />
                 },
-                {
-                    path: 'university/:universityName',  // Fixed dynamic route pattern
+               {
+                    path:'/:university-name',
                     element: <University />
                 },
                 {
