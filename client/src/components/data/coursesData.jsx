@@ -1,4 +1,4 @@
-// coursesData.js
+// coursesData.jsx
 export const coursesData = [
   {
     id: 1,
