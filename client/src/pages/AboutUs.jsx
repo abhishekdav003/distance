@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import { FaUserFriends, FaChartLine, FaMapMarkerAlt } from 'react-icons/fa';
 
 const stats = [
-  { value: '197+', label: 'Courses' },
-  { value: '8999+', label: 'Students' },
+  { value: '97+', label: 'Courses' },
+  { value: '99+', label: 'Students' },
   { value: '10+', label: 'Placement Connections' },
   { value: '8+', label: 'Years of Experience' },
 ];
