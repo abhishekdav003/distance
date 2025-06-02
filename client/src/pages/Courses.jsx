@@ -69,7 +69,7 @@ const CourseCollegesComponent = () => {
               </h1>
             </div>
             <div className="p-6">
-              <div className="grid grid-cols-3 md:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <div className="flex items-center gap-3">
                   <FaClock className="text-red-600 text-xl" />
                   <div>
@@ -151,7 +151,7 @@ const CourseCollegesComponent = () => {
           
           {/* Universities List */}
           {filteredUniversities.length > 0 ? (
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 gap-6">
               {filteredUniversities
                 .filter(uni => uni.name.toLowerCase().includes(searchTerm.toLowerCase()))
                 .map((university, index) => (
@@ -177,7 +177,7 @@ const CourseCollegesComponent = () => {
                         </div>
                       </div>
                       
-                      <div className="grid  grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                         <div>
                           <h4 className="text-sm font-medium text-gray-500">Course Fee:</h4>
                           <p className="flex items-center gap-1 text-gray-800 font-semibold">
