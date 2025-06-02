@@ -68,7 +68,7 @@ const HeroSection = () => {
   const currentUniversity = universities[currentIndex];
 
   return (
-    <div className="relative w-full h-auto py-24 overflow-hidden bg-gradient-to-br from-red-900 via-red-800 to-red-600">
+    <div className="relative w-full h-auto py-24 overflow-hidden bg-red-300">
       {/* Animated Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-10 left-10 w-72 h-72 bg-white rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
@@ -82,20 +82,20 @@ const HeroSection = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             
             {/* Left Content */}
-            <div className="space-y-8 text-white">
+            <div className="space-y-8 text-gray-800">
               {/* University Badge */}
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20">
-                <Award className="w-4 h-4 text-red-300" />
+                <Award className="w-4 h-4 text-gray-900" />
                 <span className="text-sm font-medium">Premium Institution</span>
               </div>
 
               {/* Main Heading */}
               <div className="space-y-4">
-                <h1 className="text-5xl lg:text-7xl font-black leading-tight">
-                  <span className="block text-white">
+                <h1 className="text-5xl lg:text-6xl font-black leading-tight">
+                  <span className="block text-black">
                     {currentUniversity.name.split(' ')[0]}
                   </span>
-                  <span className="block bg-gradient-to-r from-red-300 to-white bg-clip-text text-transparent">
+                  <span className="block bg-gradient-to-r from-black to-black bg-clip-text text-transparent">
                     {currentUniversity.name.split(' ').slice(1).join(' ')}
                   </span>
                 </h1>
@@ -107,18 +107,18 @@ const HeroSection = () => {
                     <span className="text-xl font-bold">{currentUniversity.rating}</span>
                   </div>
                   <div className="h-6 w-px bg-white/30"></div>
-                  <span className="text-red-200 font-medium">{currentUniversity.highlight}</span>
+                  <span className="text-gray-900 font-medium">{currentUniversity.highlight}</span>
                 </div>
               </div>
 
               {/* Tagline */}
-              <p className="text-xl lg:text-2xl text-red-100 font-light max-w-xl leading-relaxed">
+              <p className="text-xl lg:text-2xl text-gray-900 font-light max-w-xl leading-relaxed">
                 {currentUniversity.tagline}
               </p>
 
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4 z-20">
-                <button className="group relative bg-white text-red-800 font-bold px-8 py-4 rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                <button className="group relative bg-white text-gray-800 font-bold px-8 py-4 rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl">
                   <div className="absolute inset-0 bg-gradient-to-r from-red-50 to-white transform translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
                   <div className="relative flex items-center gap-2">
                     <GraduationCap className="w-5 h-5" />
@@ -144,7 +144,7 @@ const HeroSection = () => {
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
               >
-                <div className="absolute inset-0 bg-gradient-to-t from-red-900/90 via-red-800/30 to-transparent rounded-2xl z-10"></div>
+                <div className="absolute inset-0 bg-gradient-to-t  to-transparent rounded-2xl z-10"></div>
                 <img
                   src={currentUniversity.image}
                   alt={currentUniversity.name}
@@ -156,7 +156,7 @@ const HeroSection = () => {
                   <div className="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/20">
                     <div className="flex items-center justify-between">
                       <div>
-                        <h3 className="font-bold text-red-800 text-lg">{currentUniversity.name}</h3>
+                        <h3 className="font-bold text-gray-900 text-lg">{currentUniversity.name}</h3>
                         <p className="text-red-600 text-sm">{currentUniversity.highlight}</p>
                       </div>
                       <div className="text-right">
@@ -212,23 +212,23 @@ const HeroSection = () => {
       {/* Bottom Stats Bar */}
       <div className="absolute bottom-0 left-0 right-0 bg-white/10 backdrop-blur-sm border-t border-white/20">
         <div className="container mx-auto px-6 py-4">
-          <div className="flex justify-center lg:justify-between items-center text-white">
+          <div className="flex justify-center lg:justify-between items-center text-gray-900">
             <div className="hidden lg:flex items-center gap-8">
               <div className="text-center">
                 <div className="text-2xl font-bold">150+</div>
-                <div className="text-sm text-red-200">Universities</div>
+                <div className="text-sm text-black">Universities</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold">50K+</div>
-                <div className="text-sm text-red-200">Students</div>
+                <div className="text-sm text-black">Students</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold">95%</div>
-                <div className="text-sm text-red-200">Placement Rate</div>
+                <div className="text-sm text-black">Placement Rate</div>
               </div>
             </div>
             <div className="text-center lg:text-right">
-              <div className="text-sm text-red-200">Scroll to explore more</div>
+              <div className="text-sm text-black">Scroll to explore more</div>
             </div>
           </div>
         </div>
