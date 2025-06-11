@@ -270,25 +270,70 @@
 
 
 
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const HeroSection = () => {
-  // Replace with your actual banner image path
-  const bannerImage = "/bann.jpg";
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Replace with your actual image paths
+  const desktopBanner = "/bann.jpg";
+  const mobileBanner = "/mobbann.jpg";
+
+  // Check screen size and update state
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768); // 768px is md breakpoint in Tailwind
+    };
+
+    // Check on initial load
+    checkScreenSize();
+
+    // Add event listener for window resize
+    window.addEventListener('resize', checkScreenSize);
+
+    // Cleanup event listener
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
-      {/* Full Screen Banner Image */}
-      <div className="absolute inset-0">
+      {/* Desktop Banner - Hidden on mobile */}
+      <div className="hidden md:block absolute inset-0">
         <img
-          src={bannerImage}
-          alt="Main Banner"
+          src={desktopBanner}
+          alt="Desktop Banner"
           className="w-full h-full object-cover"
         />
-        {/* Optional overlay for better text readability if needed */}
-        <div className="absolute inset-0 bg-black/10"></div>
       </div>
+
+      {/* Mobile Banner - Hidden on desktop */}
+      <div className="block md:hidden absolute inset-0">
+        <img
+          src={mobileBanner}
+          alt="Mobile Banner"
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      {/* Alternative method using background images for better performance */}
+      {/* Uncomment this section and remove the above if you prefer background images */}
+      {/*
+      <div 
+        className="hidden md:block absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${desktopBanner})` }}
+      ></div>
+      
+      <div 
+        className="block md:hidden absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${mobileBanner})` }}
+      ></div>
+      */}
+
+      {/* Optional overlay for better contrast if needed */}
+      <div className="absolute inset-0 bg-black/5"></div>
+
+      {/* Optional: Loading state while images load */}
+      <div className="absolute inset-0 bg-gray-200 animate-pulse -z-10"></div>
     </div>
   );
 };
