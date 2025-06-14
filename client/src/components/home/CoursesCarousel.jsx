@@ -288,11 +288,12 @@ export default function CourseDisplay() {
             transform: translateY(0);
           }
         }
-        
+
         .animate-fade-in {
           animation: fade-in 0.6s ease-out;
         }
       `}</style>
+    </div>
     </div>
   );
 }
