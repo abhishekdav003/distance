@@ -224,7 +224,11 @@ export default function CourseDisplay() {
             </div>
             
             {/* Responsive Grid with Animation */}
+
             <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8 gap-4 sm:gap-6 lg:gap-7">
+
+            <div className="grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-8 gap-4 sm:gap-6 lg:gap-7">
+
               {filteredCourses.map((course, index) => (
                 <div
                   key={course.id}
