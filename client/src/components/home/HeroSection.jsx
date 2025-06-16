@@ -269,71 +269,109 @@
 
 
 
-
 import React, { useState, useEffect } from 'react';
 
 const HeroSection = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   // Replace with your actual image paths
   const desktopBanner = "/bann.jpg";
-  const mobileBanner = "/mobbann.jpg";
+  const mobileBanner = "/ubann.jpg";
 
   // Check screen size and update state
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth < 768); // 768px is md breakpoint in Tailwind
+      setIsMobile(window.innerWidth < 768);
     };
 
-    // Check on initial load
     checkScreenSize();
-
-    // Add event listener for window resize
     window.addEventListener('resize', checkScreenSize);
-
-    // Cleanup event listener
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
+  // Handle image load
+  const handleImageLoad = () => {
+    setIsLoaded(true);
+  };
+
   return (
-    <div className="relative w-full h-screen overflow-hidden">
-      {/* Desktop Banner - Hidden on mobile */}
-      <div className="hidden md:block absolute inset-0">
+    <div className="relative w-full">
+      {/* Desktop Banner Container - Full height on desktop */}
+      <div className="hidden md:block relative w-full h-screen">
         <img
           src={desktopBanner}
           alt="Desktop Banner"
           className="w-full h-full object-cover"
+          onLoad={handleImageLoad}
         />
       </div>
 
-      {/* Mobile Banner - Hidden on desktop */}
-      <div className="block md:hidden absolute inset-0">
+      {/* Mobile Banner Container - Optimized for 320x400 aspect ratio */}
+      <div className="block md:hidden relative w-full">
+        {/* Container with proper aspect ratio for mobile banner (4:5 ratio) */}
+        <div className="relative w-full" style={{ aspectRatio: '4/5' }}>
+          <img
+            src={mobileBanner}
+            alt="Mobile Banner"
+            className="absolute inset-0 w-full h-full object-cover"
+            onLoad={handleImageLoad}
+          />
+        </div>
+      </div>
+
+      {/* Alternative: If you want mobile banner to fill more of the screen */}
+      {/* Uncomment this section and comment out the above mobile container */}
+      {/*
+      <div className="block md:hidden relative w-full min-h-[400px] max-h-[80vh]">
         <img
           src={mobileBanner}
           alt="Mobile Banner"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-center"
+          onLoad={handleImageLoad}
         />
       </div>
+      */}
 
-      {/* Alternative method using background images for better performance */}
-      {/* Uncomment this section and remove the above if you prefer background images */}
+      {/* Alternative: Using background images for better performance */}
+      {/* Uncomment this section and remove the img tags above if preferred */}
       {/*
       <div 
-        className="hidden md:block absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="hidden md:block w-full h-screen bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${desktopBanner})` }}
       ></div>
       
       <div 
-        className="block md:hidden absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${mobileBanner})` }}
+        className="block md:hidden w-full bg-cover bg-center bg-no-repeat"
+        style={{ 
+          backgroundImage: `url(${mobileBanner})`,
+          aspectRatio: '4/5'
+        }}
       ></div>
       */}
 
-      {/* Optional overlay for better contrast if needed */}
-      <div className="absolute inset-0 bg-black/5"></div>
+      {/* Loading state */}
+      {!isLoaded && (
+        <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center">
+          <div className="text-gray-500">Loading...</div>
+        </div>
+      )}
 
-      {/* Optional: Loading state while images load */}
-      <div className="absolute inset-0 bg-gray-200 animate-pulse -z-10"></div>
+      {/* Optional overlay for better text contrast */}
+      <div className="absolute inset-0 bg-black/10 pointer-events-none"></div>
+
+      {/* Content overlay - Add your content here */}
+      <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center p-4">
+        {/* Your hero content goes here */}
+        {/* Example: */}
+        {/*
+        <h1 className="text-4xl md:text-6xl font-bold mb-4">Your Title</h1>
+        <p className="text-lg md:text-xl mb-8">Your subtitle</p>
+        <button className="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-lg text-white font-semibold">
+          Call to Action
+        </button>
+        */}
+      </div>
     </div>
   );
 };
