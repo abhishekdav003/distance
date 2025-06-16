@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { BookOpen, Clock, Award, Laptop } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
 // Enhanced courses data with categories (keeping original durations and correcting some)
 const coursesData = [
@@ -156,18 +155,20 @@ const CourseCard = ({ course, onViewProgram }) => {
 
 export default function CourseDisplay() {
   const [activeFilter, setActiveFilter] = useState('all');
-  const navigate = useNavigate();
 
-  // Original navigation functionality preserved
+  // Navigation functionality (removed useNavigate dependency for demo)
   const handleViewProgram = (course) => {
     console.log('Navigating to colleges page with course:', course);
     
     // Navigate to the colleges page with the selected course data
-    navigate('/colleges', {
-      state: {
-        selectedCourse: course.id
-      }
-    });
+    // navigate('/colleges', {
+    //   state: {
+    //     selectedCourse: course.id
+    //   }
+    // });
+    
+    // For demo purposes, just log the action
+    alert(`Viewing program: ${course.title}`);
   };
 
   // Filter courses based on active filter
@@ -223,12 +224,8 @@ export default function CourseDisplay() {
               </p>
             </div>
             
-            {/* Responsive Grid with Animation */}
-
-            <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8 gap-4 sm:gap-6 lg:gap-7">
-
-            <div className="grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-8 gap-4 sm:gap-6 lg:gap-7">
-
+            {/* Fixed Responsive Grid */}
+            <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-3 sm:gap-4 lg:gap-6">
               {filteredCourses.map((course, index) => (
                 <div
                   key={course.id}
