@@ -291,6 +291,5 @@ export default function CourseDisplay() {
         }
       `}</style>
     </div>
-    </div>
   );
 }
