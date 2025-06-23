@@ -546,7 +546,7 @@ const universities = [
   universityName: "Lovely Professional University",
   About: [
     "Lovely Professional University (LPU), established in 2005 under the Lovely Professional University Act and operational since 2006, has quickly emerged as one of India’s largest and most prominent single-campus private universities. Founded by the Lovely International Trust, LPU has become a leader in higher education, offering a diverse range of programs across more than 40 disciplines.",
-    "LPU Online is the digital learning arm of the university, designed to meet the evolving needs of modern learners. It provides a flexible, accessible, and high-quality education that reflects the academic standards of LPU’s on-campus offerings. The platform caters to students around the globe who seek a comprehensive learning experience without geographical limitations.",
+    
     "LPU Online offers a wide selection of undergraduate, postgraduate, and diploma programs in fields such as Business Administration, Computer Applications, Information Technology, Commerce, and Arts. The curriculum is thoughtfully developed to ensure both academic depth and industry relevance, blending theoretical knowledge with practical application."
   ],
   description: "Join LPU Online to elevate your career with our industry-relevant and comprehensive online programs. Recognized by UGC–DEB and accredited with an NAAC A++ grade, Lovely Professional University ranks among India’s top institutions, securing the 27th position in the NIRF rankings. Experience quality education designed for the modern learner—flexible, accessible, and impactful.",
@@ -708,13 +708,13 @@ const universities = [
   { feature: "Location", details: "Jalandhar, Punjab" },
   { feature: "Establishment Year", details: "2005" },
   { feature: "Program Types", details: "UG, PG, Diploma" },
-  { feature: "Focus Areas", details: "Skill-oriented, holistic, and industry-relevant education" },
-  { feature: "Educational Expertise", details: "Academic excellence with over 15 years in education" },
-  { feature: "Learning Methodologies", details: "Comprehensive online resources and interactive sessions" },
-  { feature: "Growth Emphasis", details: "Personal and professional development" },
+  // { feature: "Focus Areas", details: "Skill-oriented, holistic, and industry-relevant education" },
+  // { feature: "Educational Expertise", details: "Academic excellence with over 15 years in education" },
+  // { feature: "Learning Methodologies", details: "Comprehensive online resources and interactive sessions" },
+  // { feature: "Growth Emphasis", details: "Personal and professional development" },
   { feature: "Learning Platform", details: "Learning Management System (LMS)" },
   { feature: "Support Services", details: "Academic support, career counseling, technical assistance" },
-  { feature: "Admission Process", details: "Simple, transparent, and entirely online" },
+  // { feature: "Admission Process", details: "Simple, transparent, and entirely online" },
   { feature: "NIRF Rank", details: "38 (University Category, 2023)" },
   { feature: "Student Rating", details: "4.3/5" }
 ],
