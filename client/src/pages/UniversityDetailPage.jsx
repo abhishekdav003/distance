@@ -28,6 +28,8 @@ import {
   FaTimes,
   FaBars,
 } from "react-icons/fa";
+import { universityDetail } from "../components/data/universityDetail";
+import { courses, modulardata } from "../components/data/ModularUnivarsityData";
 
 const UniversityDetailPage = () => {
   const [activeTab, setActiveTab] = useState("overview");
@@ -36,151 +38,27 @@ const UniversityDetailPage = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  // Mock data for demonstration
-  const universityDetail = {
-    id: 1,
-    name: "Tech University of Excellence",
-    image:
-      "https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=400&fit=crop",
-    location: "Mumbai, Maharashtra",
-    mode: "Online",
-    rating: 4.8,
-    fee: "₹2,50,000",
-    nextIntake: "July 2025",
-    studentsEnrolled: "15,000+",
-    accreditation: "UGC Approved",
-    programDescription:
-      "Our comprehensive MBA program is designed to develop future business leaders with cutting-edge curriculum, industry partnerships, and practical learning experiences. The program combines theoretical knowledge with real-world applications to prepare students for the dynamic business environment.",
-    highlights: [
-      "Industry-aligned curriculum with latest business trends",
-      "Expert faculty with corporate experience",
-      "Live projects and case studies",
-      "Global alumni network of 50,000+ professionals",
-      "Placement assistance with top companies",
-      "Flexible learning schedules",
-    ],
-    features: [
-      "State-of-the-art virtual classrooms",
-      "24/7 learning management system access",
-      "Digital library with 10,000+ resources",
-      "Career counseling and mentorship",
-      "Industry certification programs",
-      "Student support services",
-    ],
-    curriculum: [
-      {
-        semester: "Semester 1",
-        subjects: [
-          "Management Principles",
-          "Financial Accounting",
-          "Business Statistics",
-          "Marketing Management",
-          "Organizational Behavior",
-        ],
-      },
-      {
-        semester: "Semester 2",
-        subjects: [
-          "Corporate Finance",
-          "Operations Management",
-          "Human Resource Management",
-          "Business Law",
-          "Research Methodology",
-        ],
-      },
-      {
-        semester: "Semester 3",
-        subjects: [
-          "Strategic Management",
-          "International Business",
-          "Project Management",
-          "Digital Marketing",
-          "Business Analytics",
-        ],
-      },
-      {
-        semester: "Semester 4",
-        subjects: [
-          "Leadership & Change",
-          "Entrepreneurship",
-          "Capstone Project",
-          "Internship",
-          "Industry Specialization",
-        ],
-      },
-    ],
-    eligibility: [
-      "Bachelor's degree in any discipline with minimum 50% marks",
-      "Valid entrance exam score (CAT/MAT/XAT/CMAT)",
-      "Work experience preferred but not mandatory",
-      "English proficiency certification",
-    ],
-    documents: [
-      "10th & 12th Mark Sheets",
-      "Bachelor's Degree Certificate",
-      "Entrance Exam Scorecard",
-      "Identity Proof (Aadhar/Passport)",
-      "Passport Size Photographs",
-      "Experience Certificate (if applicable)",
-    ],
-    applicationTimeline: [
-      {
-        step: "Application",
-        description: "Submit online application with documents",
-      },
-      { step: "Review", description: "Application review and shortlisting" },
-      {
-        step: "Interview",
-        description: "Personal interview and final selection",
-      },
-    ],
-    feeStructure: [
-      { component: "Tuition Fee", amount: "2,00,000" },
-      { component: "Registration Fee", amount: "25,000" },
-      { component: "Technology Fee", amount: "15,000" },
-      { component: "Examination Fee", amount: "10,000" },
-    ],
-    totalFee: "2,50,000",
-    paymentOptions: [
-      {
-        type: "One-time Payment",
-        description: "Pay full amount at admission",
-        amount: "₹2,50,000 (5% discount)",
-      },
-      {
-        type: "Semester Wise",
-        description: "Pay per semester",
-        amount: "₹62,500 x 4",
-      },
-      {
-        type: "EMI Option",
-        description: "Easy monthly installments",
-        amount: "₹21,000 x 12",
-      },
-    ],
-    faqs: [
-      {
-        question: "What is the duration of the program?",
-        answer:
-          "The MBA program is a 2-year full-time course divided into 4 semesters.",
-      },
-      {
-        question: "Is this program UGC approved?",
-        answer:
-          "Yes, our university is UGC approved and the degree is recognized by all government and private organizations.",
-      },
-      {
-        question: "What are the placement opportunities?",
-        answer:
-          "We have partnerships with 200+ companies and maintain an average placement rate of 95% with competitive salary packages.",
-      },
-      {
-        question: "Can I pursue this while working?",
-        answer:
-          "Yes, we offer flexible schedules and weekend classes to accommodate working professionals.",
-      },
-    ],
-  };
+  // ============================>
+  const location = useLocation();
+
+  let courseName = location.pathname
+    .toString()
+    .split("/")[2]
+    .replaceAll("-", "");
+  // console.log(courseName);
+
+  let matchUni = courses.find((course)=> course.name == courseName)
+  // console.log('====================================');
+  // console.log(matchUni);
+  // console.log('====================================');
+
+  let uniname = location.pathname.toString().split("/")[3].replaceAll("-", "");
+
+  // console.log(uniname);
+  let found = modulardata.find(
+    (matchUniversity) => matchUniversity.name.replaceAll(" ", "") == uniname
+  );
+  // console.log(found);
 
   const courseDetail = {
     id: 1,
@@ -230,8 +108,8 @@ const UniversityDetailPage = () => {
             <div className="flex-shrink-0 mx-auto xl:mx-0">
               <div className="relative">
                 <img
-                  src={universityDetail.image}
-                  alt={universityDetail.name}
+                  src={`/colleges/${found.image}`}
+                  alt={found.name}
                   className="w-24 h-24 sm:w-32 sm:h-32 lg:w-40 lg:h-40 rounded-2xl object-cover border-4 border-white shadow-2xl"
                 />
                 <div className="absolute -bottom-2 -right-2 bg-white text-red-600 rounded-full p-2 shadow-lg">
@@ -245,15 +123,15 @@ const UniversityDetailPage = () => {
               <div>
                 <div className="flex flex-col sm:flex-row items-center justify-center xl:justify-start gap-2 sm:gap-4 mb-2 sm:mb-3">
                   <h1 className="text-xl sm:text-2xl lg:text-4xl font-bold leading-tight">
-                    {courseDetail.title}
+                    {matchUni.fullName}
                   </h1>
                   <span className="bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs sm:text-sm font-semibold border border-white/30">
                     {universityDetail.mode}
                   </span>
                 </div>
 
-                <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold opacity-90 mb-4 sm:mb-6">
-                  {universityDetail.name}
+                <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold opacity-90 mb-4 sm:mb-6 capitalize">
+                  {found.name}
                 </h2>
               </div>
 
@@ -264,7 +142,7 @@ const UniversityDetailPage = () => {
                   <div className="text-center xl:text-left">
                     <p className="text-xs sm:text-sm opacity-80">Location</p>
                     <p className="font-semibold text-sm sm:text-base">
-                      {universityDetail.location}
+                      {found.location}
                     </p>
                   </div>
                 </div>
@@ -320,7 +198,7 @@ const UniversityDetailPage = () => {
             <FaRupeeSign className="text-red-600 text-xl sm:text-2xl mx-auto mb-2 group-hover:scale-110 transition-transform duration-300" />
             <p className="text-xs sm:text-sm text-gray-500 mb-1">Course Fee</p>
             <p className="font-bold text-sm sm:text-lg text-gray-800">
-              {universityDetail.fee}
+              ₹{found.courseFees}
             </p>
           </div>
 
@@ -328,7 +206,7 @@ const UniversityDetailPage = () => {
             <FaCalendar className="text-red-600 text-xl sm:text-2xl mx-auto mb-2 group-hover:scale-110 transition-transform duration-300" />
             <p className="text-xs sm:text-sm text-gray-500 mb-1">Next Intake</p>
             <p className="font-bold text-sm sm:text-lg text-gray-800">
-              {universityDetail.nextIntake}
+              {found.nextTake}
             </p>
           </div>
 
@@ -336,7 +214,7 @@ const UniversityDetailPage = () => {
             <FaUsers className="text-red-600 text-xl sm:text-2xl mx-auto mb-2 group-hover:scale-110 transition-transform duration-300" />
             <p className="text-xs sm:text-sm text-gray-500 mb-1">Students</p>
             <p className="font-bold text-sm sm:text-lg text-gray-800">
-              {universityDetail.studentsEnrolled}
+              {found.noOfStudents}+
             </p>
           </div>
 
@@ -585,7 +463,7 @@ const UniversityDetailPage = () => {
                       Fee Breakdown
                     </h4>
                     <div className="space-y-4">
-                      {universityDetail.feeStructure.map((fee, index) => (
+                      {found.feeStructure.map((fee, index) => (
                         <div
                           key={index}
                           className="flex justify-between items-center py-3 border-b border-red-200 last:border-b-0"
@@ -601,7 +479,7 @@ const UniversityDetailPage = () => {
                       <div className="flex justify-between items-center py-4 border-t-2 border-red-300 font-bold text-base sm:text-lg">
                         <span className="text-red-800">Total Fee</span>
                         <span className="text-red-600">
-                          ₹{universityDetail.totalFee}
+                          ₹{found.courseFees}
                         </span>
                       </div>
                     </div>
