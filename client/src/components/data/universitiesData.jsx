@@ -56,7 +56,7 @@ export const universitiesData = {
       image: '/colleges/amity.jpg'
     },
     {
-      name: 'IGNOU',
+      name: 'Indira Gandhi National Open University',
       location: 'New Delhi',
       fee: '32,500/- Semester',
       approvals: 'UGC | DEB | NAAC A++',
