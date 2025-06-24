@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaPaperPlane, FaInstagram, FaLinkedin, FaPinterest } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaPaperPlane, FaInstagram, FaLinkedin, FaPinterest, FaPhoneAlt } from 'react-icons/fa';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -31,7 +31,7 @@ const Footer = () => {
           {/* Call us */}
           <div className="flex items-start gap-3">
             <div className="mt-1">
-              <FaPhone className="text-black text-2xl" />
+              <FaPhoneAlt className="text-black text-2xl" />
             </div>
             <div>
               <h3 className="text-lg font-semibold text-black">Call us</h3>

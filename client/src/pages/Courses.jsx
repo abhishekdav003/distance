@@ -1,12 +1,26 @@
-import { useState, useEffect } from 'react';
-import { FaClock, FaGraduationCap, FaLaptop, FaCreditCard, FaUniversity, FaMapMarkerAlt, FaRupeeSign, FaCheck, FaBriefcase, FaArrowRight, FaArrowLeft, FaSearch, FaEye } from 'react-icons/fa';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { coursesData } from '../components/data/coursesData';
-import { universitiesData } from '../components/data/universitiesData';
+import { useState, useEffect } from "react";
+import {
+  FaClock,
+  FaGraduationCap,
+  FaLaptop,
+  FaCreditCard,
+  FaUniversity,
+  FaMapMarkerAlt,
+  FaRupeeSign,
+  FaCheck,
+  FaBriefcase,
+  FaArrowRight,
+  FaArrowLeft,
+  FaSearch,
+  FaEye,
+} from "react-icons/fa";
+import { useLocation, useNavigate } from "react-router-dom";
+import { coursesData } from "../components/data/coursesData";
+import { universitiesData } from "../components/data/universitiesData";
 
 const CourseCollegesComponent = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [modeFilter, setModeFilter] = useState('all');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [modeFilter, setModeFilter] = useState("all");
   const [selectedCourse, setSelectedCourse] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
@@ -19,31 +33,48 @@ const CourseCollegesComponent = () => {
   }, [location.state]);
 
   // Get the selected course details
-  const selectedCourseDetails = coursesData.find(course => course.id === selectedCourse);
-  
+  const selectedCourseDetails = coursesData.find(
+    (course) => course.id === selectedCourse
+  );
+
   // Get universities for the selected course
-  const courseUniversities = selectedCourse ? 
-    universitiesData[selectedCourse] || [] : [];
+  const courseUniversities = selectedCourse
+    ? universitiesData[selectedCourse] || []
+    : [];
 
   // Apply filters to universities
-  const filteredUniversities = courseUniversities.filter(uni => 
-    modeFilter === 'all' || uni.mode.toLowerCase().includes(modeFilter.toLowerCase())
+  const filteredUniversities = courseUniversities.filter(
+    (uni) =>
+      modeFilter === "all" ||
+      uni.mode.toLowerCase().includes(modeFilter.toLowerCase())
   );
 
   const goBack = () => {
     navigate(-1);
   };
 
+  // create a slug
+  const createSlug = (text) => {
+    return text
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, "") // Remove special characters
+      .replace(/\s+/g, "-") // Replace spaces with hyphens
+      .trim();
+  };
+
   // New function to handle university detail navigation
   const handleViewUniversityDetail = (university, index) => {
     // Navigate to university detail page
-    navigate(`/university/${index + 1}/${selectedCourse}`, {
+    // New code:
+    const courseTitle = selectedCourseDetails.title.split(" ")[0];
+    const universitySlug = createSlug(university.name);
+    navigate(`/university/${courseTitle}/${universitySlug}`, {
       state: {
         university: university,
         course: selectedCourseDetails,
         universityId: index + 1,
-        courseId: selectedCourse
-      }
+        courseId: selectedCourse,
+      },
     });
   };
 
@@ -51,9 +82,9 @@ const CourseCollegesComponent = () => {
     <div className="bg-gradient-to-b from-red-50 to-indigo-50 min-h-screen">
       {/* Back button */}
       <div className="container mx-auto px-4 pt-6">
-        <button 
+        <button
           onClick={goBack}
-          className="mb-4 px-4 py-2 flex items-center gap-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700 transition-colors"
+          className="mb-4 px-4 py-2 cursor-pointer flex items-center gap-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700 transition-colors"
         >
           <FaArrowLeft /> Back to Courses
         </button>
@@ -73,15 +104,23 @@ const CourseCollegesComponent = () => {
                 <div className="flex items-center gap-3">
                   <FaClock className="text-red-600 text-xl" />
                   <div>
-                    <h3 className="text-sm text-gray-500 font-medium">Duration</h3>
-                    <p className="text-gray-800">{selectedCourseDetails.duration}</p>
+                    <h3 className="text-sm text-gray-500 font-medium">
+                      Duration
+                    </h3>
+                    <p className="text-gray-800">
+                      {selectedCourseDetails.duration}
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
                   <FaGraduationCap className="text-red-600 text-xl" />
                   <div>
-                    <h3 className="text-sm text-gray-500 font-medium">Category</h3>
-                    <p className="text-gray-800">{selectedCourseDetails.category}</p>
+                    <h3 className="text-sm text-gray-500 font-medium">
+                      Category
+                    </h3>
+                    <p className="text-gray-800">
+                      {selectedCourseDetails.category}
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
@@ -94,7 +133,9 @@ const CourseCollegesComponent = () => {
                 <div className="flex items-center gap-3">
                   <FaCreditCard className="text-red-600 text-xl" />
                   <div>
-                    <h3 className="text-sm text-gray-500 font-medium">Payment</h3>
+                    <h3 className="text-sm text-gray-500 font-medium">
+                      Payment
+                    </h3>
                     <p className="text-gray-800">Flexible Options</p>
                   </div>
                 </div>
@@ -107,7 +148,7 @@ const CourseCollegesComponent = () => {
             <h2 className="text-2xl font-bold text-red-800">
               Universities Offering {selectedCourseDetails.title}
             </h2>
-            
+
             <div className="flex gap-2">
               <div className="relative">
                 <input
@@ -119,28 +160,34 @@ const CourseCollegesComponent = () => {
                 />
                 <FaSearch className="absolute left-3 top-3 text-gray-400" />
               </div>
-              
-              <div className="flex flex-wrap gap-2 items-center">
-                <button 
-                  onClick={() => setModeFilter('all')}
+
+              <div className="flex flex-wrap gap-2 items-center *:cursor-pointer">
+                <button
+                  onClick={() => setModeFilter("all")}
                   className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                    modeFilter === 'all' ? 'bg-red-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    modeFilter === "all"
+                      ? "bg-red-600 text-white"
+                      : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                   }`}
                 >
                   All Modes
                 </button>
-                <button 
-                  onClick={() => setModeFilter('online')}
+                <button
+                  onClick={() => setModeFilter("online")}
                   className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                    modeFilter === 'online' ? 'bg-red-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    modeFilter === "online"
+                      ? "bg-red-600 text-white"
+                      : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                   }`}
                 >
                   Online
                 </button>
-                <button 
-                  onClick={() => setModeFilter('distance')}
+                <button
+                  onClick={() => setModeFilter("distance")}
                   className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                    modeFilter === 'distance' ? 'bg-red-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    modeFilter === "distance"
+                      ? "bg-red-600 text-white"
+                      : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                   }`}
                 >
                   Distance
@@ -148,83 +195,118 @@ const CourseCollegesComponent = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Universities List */}
           {filteredUniversities.length > 0 ? (
             <div className="grid grid-cols-1 gap-6">
               {filteredUniversities
-                .filter(uni => uni.name.toLowerCase().includes(searchTerm.toLowerCase()))
+                .filter((uni) =>
+                  uni.name.toLowerCase().includes(searchTerm.toLowerCase())
+                )
                 .map((university, index) => (
-                <div key={index} className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-                  <div className="flex flex-col md:flex-row">
-                    <div className="md:w-1/3 lg:w-1/4 relative">
-                      <img src={university.image} alt={university.name} className="w-full h-48 md:h-full object-cover" />
-                      <div className={`absolute top-4 left-4 px-3 py-1 rounded-md text-sm font-medium text-white ${
-                        university.mode.toLowerCase().includes('online') ? 'bg-red-600' : 'bg-indigo-600'
-                      }`}>
-                        {university.mode}
-                      </div>
-                    </div>
-                    
-                    <div className="p-6 md:w-2/3 lg:w-3/4">
-                      <div className="flex flex-col md:flex-row justify-between mb-6">
-                        <h3 className="text-xl font-bold text-red-800 mb-2 md:mb-0">
-                          {university.name}
-                        </h3>
-                        <div className="flex items-center gap-2">
-                          <FaMapMarkerAlt className="text-red-600" />
-                          <span className="text-gray-700">{university.location}</span>
+                  <div
+                    key={index}
+                    className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+                  >
+                    <div className="flex flex-col md:flex-row">
+                      <div className="md:w-1/3 lg:w-1/4 relative">
+                        <img
+                          src={university.image}
+                          alt={university.name}
+                          className="w-full h-48 md:h-full object-cover"
+                        />
+                        <div
+                          className={`absolute top-4 left-4 px-3 py-1 rounded-md text-sm font-medium text-white ${
+                            university.mode.toLowerCase().includes("online")
+                              ? "bg-red-600"
+                              : "bg-indigo-600"
+                          }`}
+                        >
+                          {university.mode}
                         </div>
                       </div>
-                      
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                        <div>
-                          <h4 className="text-sm font-medium text-gray-500">Course Fee:</h4>
-                          <p className="flex items-center gap-1 text-gray-800 font-semibold">
-                            <FaRupeeSign className="text-red-600" /> {university.fee}
-                          </p>
+
+                      <div className="p-6 md:w-2/3 lg:w-3/4">
+                        <div className="flex flex-col md:flex-row justify-between mb-6">
+                          <h3 className="text-xl font-bold text-red-800 mb-2 md:mb-0">
+                            {university.name}
+                          </h3>
+                          <div className="flex items-center gap-2">
+                            <FaMapMarkerAlt className="text-red-600" />
+                            <span className="text-gray-700">
+                              {university.location}
+                            </span>
+                          </div>
                         </div>
-                        
-                        <div>
-                          <h4 className="text-sm font-medium text-gray-500">Approvals:</h4>
-                          <p className="flex items-center gap-1 text-gray-800">
-                            <FaCheck className="text-red-600" /> {university.approvals}
-                          </p>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                          <div>
+                            <h4 className="text-sm font-medium text-gray-500">
+                              Course Fee:
+                            </h4>
+                            <p className="flex items-center gap-1 text-gray-800 font-semibold">
+                              <FaRupeeSign className="text-red-600" />{" "}
+                              {university.fee}
+                            </p>
+                          </div>
+
+                          <div>
+                            <h4 className="text-sm font-medium text-gray-500">
+                              Approvals:
+                            </h4>
+                            <p className="flex items-center gap-1 text-gray-800">
+                              <FaCheck className="text-red-600" />{" "}
+                              {university.approvals}
+                            </p>
+                          </div>
+
+                          <div>
+                            <h4 className="text-sm font-medium text-gray-500">
+                              Advantage:
+                            </h4>
+                            <p className="flex items-center gap-1 text-gray-800">
+                              <FaBriefcase className="text-red-600" />{" "}
+                              {university.advantage}
+                            </p>
+                          </div>
+
+                          <div>
+                            <h4 className="text-sm font-medium text-gray-500">
+                              Semester Starts:
+                            </h4>
+                            <p className="text-gray-800">
+                              {university.semesterStarts || "January & July"}
+                            </p>
+                          </div>
                         </div>
-                        
-                        <div>
-                          <h4 className="text-sm font-medium text-gray-500">Advantage:</h4>
-                          <p className="flex items-center gap-1 text-gray-800">
-                            <FaBriefcase className="text-red-600" /> {university.advantage}
-                          </p>
+
+                        <div className="flex flex-wrap gap-3 *:cursor-pointer">
+                          <button className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md transition-colors flex items-center gap-2">
+                            Get Help <FaArrowRight className="text-sm" />
+                          </button>
+
+                          <button
+                            onClick={() =>
+                              handleViewUniversityDetail(university, index)
+                            }
+                            className="px-4 py-2 bg-red-100 hover:bg-red-200 text-red-800 rounded-md transition-colors"
+                          >
+                            Know More
+                          </button>
                         </div>
-                        
-                        <div>
-                          <h4 className="text-sm font-medium text-gray-500">Semester Starts:</h4>
-                          <p className="text-gray-800">{university.semesterStarts || 'January & July'}</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex flex-wrap gap-3">
-                        <button className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md transition-colors flex items-center gap-2">
-                          Get Help <FaArrowRight className="text-sm" />
-                        </button>
-                        
-                        <button onClick={() => handleViewUniversityDetail(university, index)} className="px-4 py-2 bg-red-100 hover:bg-red-200 text-red-800 rounded-md transition-colors">
-                          Know More
-                        </button>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           ) : (
             <div className="bg-white rounded-xl p-8 text-center">
               <FaUniversity className="mx-auto text-5xl text-gray-300 mb-4" />
-              <p className="text-lg text-gray-700">No universities found with the selected filter.</p>
-              <button 
-                onClick={() => setModeFilter('all')}
+              <p className="text-lg text-gray-700">
+                No universities found with the selected filter.
+              </p>
+              <button
+                onClick={() => setModeFilter("all")}
                 className="mt-4 px-6 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
               >
                 Show All Universities
@@ -236,9 +318,14 @@ const CourseCollegesComponent = () => {
         // No course selected state
         <div className="container mx-auto px-4 py-20 text-center">
           <FaUniversity className="mx-auto text-6xl text-gray-300 mb-6" />
-          <h2 className="text-2xl font-bold text-gray-700 mb-4">No Course Selected</h2>
-          <p className="text-gray-600 mb-8">Please select a course from the carousel to view available universities.</p>
-          <button 
+          <h2 className="text-2xl font-bold text-gray-700 mb-4">
+            No Course Selected
+          </h2>
+          <p className="text-gray-600 mb-8">
+            Please select a course from the carousel to view available
+            universities.
+          </p>
+          <button
             onClick={goBack}
             className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors flex items-center gap-2 mx-auto"
           >

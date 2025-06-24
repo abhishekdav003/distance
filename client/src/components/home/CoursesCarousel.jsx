@@ -136,7 +136,7 @@ export default function CourseDisplay() {
   };
 
   return (
-    <div className="bg-gradient-to-b from-red-50 to-white py-12 px-4 sm:px-6 rounded-xl  mb-5 shadow-inner shadow lg:px-8" style={{ boxShadow: 'inset 0 4px 12px rgba(0, 0, 0, 0.1)' }}>
+    <div className="bg-gradient-to-b from-red-50 to-white py-12 px-4 sm:px-6 rounded-xl  mb-5 shadow-inner  lg:px-8" style={{ boxShadow: 'inset 0 4px 12px rgba(0, 0, 0, 0.1)' }}>
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Our Academic Programs</h2>
